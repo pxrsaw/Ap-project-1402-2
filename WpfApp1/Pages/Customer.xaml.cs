@@ -73,12 +73,7 @@ namespace UserManagementSystem
             // Populate city combobox
             cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
         }
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            var MainWindow=new MainWindow();
-            MainWindow.Show();
-            Close();
-        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Filter restaurants based on user input
@@ -105,16 +100,26 @@ namespace UserManagementSystem
             RefreshButton.Visibility = Visibility.Collapsed;
             ComplaintsListView.Visibility = Visibility.Collapsed;
             Label.Visibility = Visibility.Collapsed;
-            RestaurantComboBox.ItemsSource = Restaurant.AllRestaurants;
+
+            string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
+            RestaurantComboBox.ItemsSource = Names;
         }
 
         private void SubmitComplaintButton_Click(object sender, RoutedEventArgs e)
         {
-            Restaurant selectedRestaurant = (Restaurant)RestaurantComboBox.SelectedItem;
+            Restaurant Res = null;
+            foreach(var RES in Restaurant.AllRestaurants)
+            {
+                if (RES.Name == RestaurantComboBox.SelectedItem.ToString())
+                {
+                    Res = RES;
+                }
+            }
+            Restaurant selectedRestaurant = Res;
             string title = TitleTextBox.Text;
             string description = DescriptionTextBox.Text;
 
-            FeedBack newFeedBack = new FeedBack(selectedRestaurant, regularUser, title, description);
+            FeedBack newFeedBack = new FeedBack(Res, regularUser, title, description);
             regularUser.feedBacks.Add(newFeedBack);
 
             RefreshComplaints();

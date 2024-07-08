@@ -16,7 +16,6 @@
                 <Button x:Name="SearchRestaurantButton" Content="Search Restaurant" Margin="0,0,0,10" Click="SearchRestaurantButton_Click" />
                 <Button x:Name="OrderHistoryButton" Content="Order History" Margin="0,0,0,10" Click="OrderHistoryButton_Click" />
                 <Button x:Name="FeedbacksButton" Content="Feedbacks" Margin="0,0,0,10" Click="FeedbacksButton_Click" />
-                <Button x:Name="LogOutButton" Content="Log out" Margin="0,0,0,10" Click="LogOut_Click" />
             </StackPanel>
         </Border>
 

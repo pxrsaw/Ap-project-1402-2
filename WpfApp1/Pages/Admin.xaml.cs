@@ -76,12 +76,6 @@ namespace UserManagementSystem
             Respond.Visibility = Visibility.Collapsed;
             Unreviewed.Visibility = Visibility.Collapsed;
         }
-        private void LogOut_Click(object sender, RoutedEventArgs e)
-        {
-            var MainWindow = new MainWindow();
-            MainWindow.Show();
-            Close();
-        }
         public bool isDeli;
         public bool isdin;
         public void DelCheck(object sender, RoutedEventArgs e)

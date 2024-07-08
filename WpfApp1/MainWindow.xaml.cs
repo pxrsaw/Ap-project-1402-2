@@ -173,6 +173,58 @@ namespace UserManagementSystem
             }
             return rs;
         }
+        public static List<Restaurant> SearchByAddress(List<Restaurant> rs, string nm)
+        {
+            foreach (Restaurant r1 in rs.ToList())
+            {
+                if (r1.address.ToLower().Contains(nm.ToLower()) == false)
+                {
+                    rs.Remove(r1);
+                }
+            }
+            return rs;
+        }
+        public static List<Restaurant> SearchByHavingComplaint(List<Restaurant> rs)
+        {
+            foreach (Restaurant r1 in rs.ToList())
+            {
+               int ch = 0;
+               foreach(FeedBack fb1 in r1.FeedBacks)
+                {
+                    
+                    if(fb1.isAnswered==false)
+                    {
+                        ch = 1;
+                    }
+
+                    
+                }
+                if (ch == 0)
+                {
+                    rs.Remove(r1);
+                }
+            }
+            return rs;
+        }
+        //public static List<Restaurant> SearchByNotHavingComplaint(List<Restaurant> rs)
+        //{
+        //    foreach (Restaurant r1 in rs.ToList())
+        //    {
+        //        foreach (FeedBack fb1 in r1.FeedBacks)
+        //        {
+        //            int ch = 0;
+        //            if (fb1.isAnswered == true)
+        //            {
+        //                ch = 1;
+        //            }
+        //            if (ch == 0)
+        //            {
+        //                rs.Remove(r1);
+        //            }
+        //        }
+        //    }
+        //    return rs;
+        //}
         public static List<Restaurant> SearchByDineIn(List<Restaurant> rs)
         {
 
@@ -238,6 +290,7 @@ namespace UserManagementSystem
         public static List<Restaurant> AllRestaurants = new List<Restaurant>();
         public float Wallet { get; set; }
         public List<float> AllScores { get; set; }
+        public List<FeedBack> FeedBacks { get; set; }
         public Restaurant(string nm, string username, string password, string email, string phoneNumber,string city, bool idi, bool idl, string addr) : base(username, password, email, phoneNumber)
         {
             Name = nm;
@@ -254,6 +307,7 @@ namespace UserManagementSystem
             AllRestaurants.Add(this);
             AllUsers.Add(this);
             AllScores=new List<float>();
+            FeedBacks=new List<FeedBack>();
             Wallet = 0;
         }
         public void UpdateScore(float f)
@@ -562,22 +616,26 @@ namespace UserManagementSystem
     }
     public class FeedBack
     {
-        public Restaurant restaurant { get; set; }
+       // public Restaurant restaurant { get; set; }
         public RegularUser Feedbackuser { get; set; }
+        public string user_Name {  get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public bool isAnswered { get; set; }
         public string? answer { get; set; }
         public FeedBack(Restaurant restaurant,RegularUser regular, string title, string description)
         {
-            this.restaurant = restaurant;
+            //this.restaurant = restaurant;
+            this.Feedbackuser = regular;
+            user_Name =$"{Feedbackuser.firstName} {Feedbackuser.lastName}";
             this.title = title;
             this.description = description;
             isAnswered= false;
             answer=null;
-            this.Feedbackuser = regular;
+            
             regular.feedBacks.Add(this);
             adm.AllFeedBacks.Add(this);
+            restaurant.FeedBacks.Add(this);
         }
         public void answerFeedback(string feedback) 
         {
@@ -589,9 +647,9 @@ namespace UserManagementSystem
     {
         public MainWindow()
         {
-            RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
+            RegularUser ru1 = new RegularUser("ggh", "uu", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
             new adm("parsa2", "parsa2", "", "");
-            var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, true, "");
+            var res1 = new Restaurant("hello1", "res1", "res1","lk" , "tf", "tehran", false, true, "kkkkh");
             Food fd4 = new Food("hh", "jj", "Food", 6, 78);
             Food fd7=new Food("hh", "jj", "Drink", 6, 78);
             Food fd8 = new Food("hh", "jj", "Appetizer", 6, 78);

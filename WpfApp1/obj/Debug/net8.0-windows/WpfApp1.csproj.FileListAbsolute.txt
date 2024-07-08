@@ -389,3 +389,5 @@ C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\WpfAp
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\ref\WpfApp1.dll
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\OrderComments.baml
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\OrderComments.g.cs
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\AnswerPage.g.cs
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\AnswerPage.baml

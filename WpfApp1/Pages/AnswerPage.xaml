@@ -1,0 +1,17 @@
+﻿<Window x:Class="UserManagementSystem.AnswerPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserManagementSystem"
+        mc:Ignorable="d"
+        Title="AnswerPage" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label HorizontalAlignment="Center" FontSize="15" FontWeight="Bold">Enter Answer</Label>
+            <TextBox x:Name="AnswerBox" Margin="10" FontSize="10" Height="200"/>
+            <Button Click="SubBu" Content="Submit Answer" Width="100" Height="30"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

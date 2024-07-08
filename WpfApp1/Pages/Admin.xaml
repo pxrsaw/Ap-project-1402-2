@@ -38,37 +38,53 @@
                 <Button Name="AddRes" Content="Add" HorizontalAlignment="Center" Margin="0,10" Width="100" Height="20" Click="AddRes_Click"/>
             </StackPanel>
         </Border>
-        <Border BorderBrush="#FF333333" Name="SearchRes" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <Label Content="Search by City:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                    <TextBox x:Name="CitySearchTextBox" Width="150" FontSize="16" />
-                    <Button x:Name="SearchByCity" Content="Search" Margin="10,0,0,0" Click="SearchByCity_Click" />
+        <Border BorderBrush="#FF333333" Name="SearchRes" BorderThickness="2" Grid.Column="1" Visibility="Visible" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="10">
+                    <Label>Name:</Label>
+                    <TextBox x:Name="txtRestaurantName" Margin="0,0,0,10" />
+                    <Label>Address:</Label>
+                    <TextBox x:Name="txtrest" Margin="0,0,0,10" />
+                    <Label>City:</Label>
+                    <ComboBox x:Name="cbCity" Margin="0,0,0,10">
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>tehran</ComboBoxItem>
+                        <ComboBoxItem>shiraz</ComboBoxItem>
+                        <ComboBoxItem>mashhad</ComboBoxItem>
+                        <ComboBoxItem>esfehan</ComboBoxItem>
+                    </ComboBox>
+                    <Label>Accept Type:</Label>
+                    <ComboBox x:Name="cbAcceptType" Margin="0,0,0,10">
+                        <ComboBoxItem>Delivery</ComboBoxItem>
+                        <ComboBoxItem>Dine-in</ComboBoxItem>
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>Both</ComboBoxItem>
+                    </ComboBox>
+                    <Label>Score:(0 to 5):</Label>
+                    <Slider x:Name="sliderMinScore" Minimum="0" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" Margin="0,0,0,10" />
+                    <CheckBox Content="have complaints" Checked="ComCheck" Unchecked="ComNotCheck" FontSize="10" />
+                    <Button Content="Search" Click="Button_Click" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Search by Name:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                    <TextBox x:Name="NameSearchTextBox" Width="150" FontSize="16" />
-                    <Button x:Name="SearchByName" Content="Search" Margin="10,0,0,0" Click="SearchByName_Click" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Minimum Rating:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                    <TextBox x:Name="MinRatingTextBox" Width="50" FontSize="16" />
-                    <Button x:Name="SearchByRating" Content="Search" Margin="10,0,0,0" Click="SearchByRating_Click" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <Label Content="Search Unreviewed Complaints:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                    <Button x:Name="SearchUnreviewedFeedbacks" Content="Search" Margin="10,0,0,0" Click="SearchUnreviewedFeedbacks_Click" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Search Reviewed Complaints:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
-                    <Button x:Name="SearchReviewedFeedbacks" Content="Search" Margin="10,0,0,0" Click="SearchReviewedFeedbacks_Click" />
-                </StackPanel>
-                <DataGrid x:Name="SearchResultsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" Visibility="Collapsed" />
-            </StackPanel>
+                <ListView x:Name="lvRestaurants" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged" MouseDoubleClick="lvRestaurants_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="City" DisplayMemberBinding="{Binding city}" />
+                            <!--<GridViewColumn Header="Accept Type" DisplayMemberBinding="{Binding AcceptType}" />-->
+                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding restaurantScore}" />
+                            <GridViewColumn Header="Address" DisplayMemberBinding="{Binding address}" />
+                            <GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
+                            <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
         </Border>
         <Border BorderBrush="#FF333333" Name="SearchReports" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
             <StackPanel>
@@ -103,13 +119,26 @@
                     </ComboBox>
                 </StackPanel>
 
-                <Button x:Name="SearchComplaints" Content="Search" HorizontalAlignment="Center" Margin="0,20,0,0" Width="100" Height="30" Click="SearchComplaints_Click" />
+                <!--<Button x:Name="SearchComplaints" Content="Search" HorizontalAlignment="Center" Margin="0,20,0,0" Width="100" Height="30" Click="SearchComplaints_Click" />-->
             </StackPanel>
         </Border>
         <Border BorderBrush="#FF333333" Name="Unreviewed" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
             <StackPanel>
                 <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Unreviewed Feedbacks</Label>
-                <DataGrid x:Name="UnreviewedFeedbacksGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" Width="auto"/>
+                <!--<DataGrid x:Name="UnreviewedFeedbacksGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" Width="auto"/>-->
+                <ListView x:Name="UnreviewedFeedbacksGrid" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged" MouseDoubleClick="lvComplaints">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding user_Name}" />
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding title}" />
+                            <GridViewColumn Header="Description:" DisplayMemberBinding="{Binding description}" />
+                            <!--<GridViewColumn Header="is answered" DisplayMemberBinding="{Binding isAnswered}" />-->
+                            <!--<GridViewColumn Header="Answer" DisplayMemberBinding="{Binding answer}" />-->
+                            <!--<GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
+                            <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </Border>
         <Border BorderBrush="#FF333333" Name="Respond" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">

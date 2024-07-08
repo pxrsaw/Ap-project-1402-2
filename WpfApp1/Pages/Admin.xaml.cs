@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml.Linq;
 
 namespace UserManagementSystem
@@ -13,7 +14,75 @@ namespace UserManagementSystem
             InitializeComponent();
             this.admin = admin;
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Filter restaurants based on user input
+            //List<Restaurant> filteredRestaurants = Restaurant.AllRestaurants.Where(r =>
+            //    (string.IsNullOrEmpty(txtRestaurantName.Text) || r.Name.Contains(txtRestaurantName.Text)) &&
+            //    (string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()) || r.city == cbCity.SelectedValue.ToString()) &&
+            //    (string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()) || (cbAcceptType.SelectedValue.ToString() == "Delivery" && r.isDelivery) || (cbAcceptType.SelectedValue.ToString() == "Dine-in" && r.isDine_in)) //&&
+            //                                                                                                                                                                                                                   //r.score >= sliderMinScore.Value
+            //).ToList();
 
+            // Update the ListView with filtered restaurants
+            List<Restaurant> filteredRestaurants = new List<Restaurant>(Restaurant.AllRestaurants);
+            if (!string.IsNullOrWhiteSpace(txtRestaurantName.Text))
+            {
+                filteredRestaurants = RegularUser.SearchByName(filteredRestaurants, txtRestaurantName.Text);
+            }
+            if (!string.IsNullOrWhiteSpace(txtrest.Text))
+            {
+                filteredRestaurants = RegularUser.SearchByAddress(filteredRestaurants, txtrest.Text);
+            }
+            //MessageBox.Show(cbCity.SelectedValue?.ToString());
+            if (!string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()))
+            {
+                //filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants,cbCity.SelectedValue?.ToString());
+                //MessageBox.Show(cbCity.sele);
+                if (cbCity.SelectedIndex == 1)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "tehran");
+
+                }
+                if (cbCity.SelectedIndex == 2)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "shiraz");
+                }
+                if (cbCity.SelectedIndex == 3)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "mashhad");
+                }
+                if (cbCity.SelectedIndex == 4)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "esfehan");
+                }
+            }
+            if (!string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()))
+            {
+                //MessageBox.Show(cbAcceptType.SelectedValue.ToString());
+                if (cbAcceptType.SelectedIndex == 0)
+                {
+                    filteredRestaurants = RegularUser.SearchByDelivery(filteredRestaurants);
+                    //MessageBox.Show("hi");
+                }
+                if (cbAcceptType.SelectedIndex == 1)
+                {
+                    filteredRestaurants = RegularUser.SearchByDineIn(filteredRestaurants);
+                }
+                if (cbAcceptType.SelectedIndex == 3)
+                {
+                    filteredRestaurants = RegularUser.SearchByDineIn(filteredRestaurants);
+                    filteredRestaurants = RegularUser.SearchByDelivery(filteredRestaurants);
+                }
+            }
+            if(isCom==true)
+            {
+                filteredRestaurants=RegularUser.SearchByHavingComplaint(filteredRestaurants);
+            }
+            filteredRestaurants = RegularUser.SearchByScore(sliderMinScore.Value, filteredRestaurants);
+            //MessageBox.Show(Restaurant.AllRestaurants[0].restaurantScore.ToString());
+            lvRestaurants.ItemsSource = filteredRestaurants;
+        }
         private void RegisterRestaurantButton_Click(object sender, RoutedEventArgs e)
         {
             restaurant.Visibility = Visibility.Visible;
@@ -24,7 +93,35 @@ namespace UserManagementSystem
             Respond.Visibility = Visibility.Collapsed;
 
         }
+        private void lvRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //lvOrders.SelectedItem = regularUser.AllUserOrders;
+            //lvRestaurants.SelectedItem=Restaurant.AllRestaurants;
+        }
+        private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+        private void lvComplaints(object sender, MouseButtonEventArgs e)
+        {
+            FeedBack fb4 = (FeedBack)UnreviewedFeedbacksGrid.SelectedItem;
+            var ap2=new AnswerPage(this, fb4);
+            ap2.Show();
+        }
+        public void Refreshh()
+        {
+            var unreviewedFeedbacks = adm.AllFeedBacks.Where(x => x.isAnswered == false);
 
+            UnreviewedFeedbacksGrid.ItemsSource= unreviewedFeedbacks;
+        }
+        private void NavigateToRestaurantPage(Restaurant restaurant)
+        {
+            // Create a new instance of the Restaurant page and pass the selected restaurant
+            //UserManagementSystem.RestaurantPage restaurantPage = new UserManagementSystem.RestaurantPage(restaurant, regularUser);
+            ////MessageBox.Show("hi");
+            //restaurantPage.Show();
+            //RestaurantPage.OrderDic.Clear();
+        }
         private void SearchRestaurantButton_Click(object sender, RoutedEventArgs e)
         {
             restaurant.Visibility = Visibility.Collapsed;
@@ -42,7 +139,8 @@ namespace UserManagementSystem
         }
         private void UnreviewedReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            var unreviewedFeedbacks = adm.AllFeedBacks.Where(f => !f.isAnswered).OrderByDescending(f => f.Feedbackuser.AllUserOrders.LastOrDefault()?.orderDate ?? DateTime.MinValue);
+            //var unreviewedFeedbacks = adm.AllFeedBacks.Where(f => !f.isAnswered).OrderByDescending(f => f.Feedbackuser.AllUserOrders.LastOrDefault()?.orderDate ?? DateTime.MinValue);
+            var unreviewedFeedbacks =adm.AllFeedBacks.Where(x=>x.isAnswered==false);
             UnreviewedFeedbacksGrid.ItemsSource = unreviewedFeedbacks;
             Unreviewed.Visibility = Visibility.Visible;
             restaurant.Visibility= Visibility.Collapsed;
@@ -83,9 +181,18 @@ namespace UserManagementSystem
         }
         public bool isDeli;
         public bool isdin;
+        public bool isCom=false;
         public void DelCheck(object sender, RoutedEventArgs e)
         {
             isDeli = true;
+        }
+        public void ComCheck(object sender, RoutedEventArgs e)
+        {
+            isCom = true;
+        }
+        public void ComNotCheck(object sender, RoutedEventArgs e)
+        {
+            isCom=false;
         }
         public void DelNotCheck(object sender, RoutedEventArgs e)
         {
@@ -131,71 +238,71 @@ namespace UserManagementSystem
             }
             //Adding new Restaurant.
         }
-        private void SearchByCity_Click(object sender, RoutedEventArgs e)
-        {
-            string city = CitySearchTextBox.Text;
-            var restaurantsInCity = Restaurant.AllRestaurants.Where(r => r.city == city);
-            SearchResultsGrid.ItemsSource = restaurantsInCity;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
+        //private void SearchByCity_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string city = CitySearchTextBox.Text;
+        //    var restaurantsInCity = Restaurant.AllRestaurants.Where(r => r.city == city);
+        //    SearchResultsGrid.ItemsSource = restaurantsInCity;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
 
-        private void SearchByName_Click(object sender, RoutedEventArgs e)
-        {
-            string name = NameSearchTextBox.Text;
-            var restaurantsByName = Restaurant.AllRestaurants.Where(r => r.Name.Contains(name));
-            SearchResultsGrid.ItemsSource = restaurantsByName;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
+        //private void SearchByName_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string name = NameSearchTextBox.Text;
+        //    var restaurantsByName = Restaurant.AllRestaurants.Where(r => r.Name.Contains(name));
+        //    SearchResultsGrid.ItemsSource = restaurantsByName;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
 
-        private void SearchByRating_Click(object sender, RoutedEventArgs e)
-        {
-            float minRating=0;
-            try
-            {
-                minRating = float.Parse(MinRatingTextBox.Text);
-            }
-            catch
-            {
-                MessageBox.Show("invalid input");
-                return;
-            }
-            var restaurantsWithMinScore = Restaurant.AllRestaurants.Where(r => r.restaurantScore >= minRating);
-            SearchResultsGrid.ItemsSource = restaurantsWithMinScore;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
-        private void SearchUnreviewedFeedbacks_Click(object sender, RoutedEventArgs e)
-        {
-            var usersWithUnreviewedFeedbacks = RegularUser.AllRegularUsers.Where(u => u.feedBacks.Any(f => !f.isAnswered));
-            SearchResultsGrid.ItemsSource = usersWithUnreviewedFeedbacks;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
+        //private void SearchByRating_Click(object sender, RoutedEventArgs e)
+        //{
+        //    float minRating=0;
+        //    try
+        //    {
+        //        minRating = float.Parse(MinRatingTextBox.Text);
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("invalid input");
+        //        return;
+        //    }
+        //    var restaurantsWithMinScore = Restaurant.AllRestaurants.Where(r => r.restaurantScore >= minRating);
+        //    SearchResultsGrid.ItemsSource = restaurantsWithMinScore;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
+        //private void SearchUnreviewedFeedbacks_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var usersWithUnreviewedFeedbacks = RegularUser.AllRegularUsers.Where(u => u.feedBacks.Any(f => !f.isAnswered));
+        //    SearchResultsGrid.ItemsSource = usersWithUnreviewedFeedbacks;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
 
-        private void SearchReviewedFeedbacks_Click(object sender, RoutedEventArgs e)
-        {
-            var usersWithReviewedFeedbacks = RegularUser.AllRegularUsers.Where(u => u.feedBacks.Any(f => f.isAnswered));
-            SearchResultsGrid.ItemsSource = usersWithReviewedFeedbacks;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
-        private void SearchComplaints_Click(object sender, RoutedEventArgs e)
-        {
-            string username = UsernameSearchTextBox.Text;
-            string complaintTitle = ComplaintTitleSearchTextBox.Text;
-            string complainantName = ComplainantNameSearchTextBox.Text;
-            string restaurantName = RestaurantNameSearchTextBox.Text;
-            string reviewedStatus = ((ComboBoxItem)ReviewedStatusComboBox.SelectedItem).Content.ToString();
+        //private void SearchReviewedFeedbacks_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var usersWithReviewedFeedbacks = RegularUser.AllRegularUsers.Where(u => u.feedBacks.Any(f => f.isAnswered));
+        //    SearchResultsGrid.ItemsSource = usersWithReviewedFeedbacks;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
+        //private void SearchComplaints_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string username = UsernameSearchTextBox.Text;
+        //    string complaintTitle = ComplaintTitleSearchTextBox.Text;
+        //    string complainantName = ComplainantNameSearchTextBox.Text;
+        //    string restaurantName = RestaurantNameSearchTextBox.Text;
+        //    string reviewedStatus = ((ComboBoxItem)ReviewedStatusComboBox.SelectedItem).Content.ToString();
 
-            var complaints = adm.AllFeedBacks.Where(c =>
-                (string.IsNullOrEmpty(username) || c.Feedbackuser.username.Contains(username)) &&
-                (string.IsNullOrEmpty(complaintTitle) || c.title.Contains(complaintTitle)) &&
-                (string.IsNullOrEmpty(complainantName) || (c.Feedbackuser.firstName + " " + c.Feedbackuser.lastName).Contains(complainantName)) && 
-                (string.IsNullOrEmpty(restaurantName) || c.restaurant.Name.Contains(restaurantName)) &&
-                (reviewedStatus == "All" || (reviewedStatus == "Reviewed" && c.isAnswered) || (reviewedStatus == "Unreviewed" && !c.isAnswered))
-            );
+        //    var complaints = adm.AllFeedBacks.Where(c =>
+        //        (string.IsNullOrEmpty(username) || c.Feedbackuser.username.Contains(username)) &&
+        //        (string.IsNullOrEmpty(complaintTitle) || c.title.Contains(complaintTitle)) &&
+        //        (string.IsNullOrEmpty(complainantName) || (c.Feedbackuser.firstName + " " + c.Feedbackuser.lastName).Contains(complainantName)) &&
+        //        (string.IsNullOrEmpty(restaurantName) || c.restaurant.Name.Contains(restaurantName)) &&
+        //        (reviewedStatus == "All" || (reviewedStatus == "Reviewed" && c.isAnswered) || (reviewedStatus == "Unreviewed" && !c.isAnswered))
+        //    );
 
-            SearchResultsGrid.ItemsSource = complaints;
-            SearchResultsGrid.Visibility = Visibility.Visible;
-        }
-        
+        //    SearchResultsGrid.ItemsSource = complaints;
+        //    SearchResultsGrid.Visibility = Visibility.Visible;
+        //}
+
         private void SubmitResponse_Click(object sender, RoutedEventArgs e)
         {
             FeedBack selectedComplaint = (FeedBack)UnreviewedComplaintsGrid.SelectedItem;

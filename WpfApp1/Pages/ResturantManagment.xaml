@@ -25,15 +25,50 @@
                 <Label FontSize="20" Margin="10" HorizontalAlignment="Center" FontWeight="Bold">Change Menu</Label>
                 <Button HorizontalAlignment="Center" Margin="0,20" Width="100" Height="20" Name="AddButton" Content="Add" Click="AddButton_Click"/>
                 <Button HorizontalAlignment="Center" Margin="0,20" Width="100" Height="20" Name="RemoveButton" Content="Remove" Click="RemoveButton_Click"/>
-                <Label Name="Food" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold" Visibility="Collapsed">Foods:</Label>
-                <DataGrid Name="FoodDataGrid" Margin="0,20,0,0" Visibility="Collapsed"/>
+                <ListView x:Name="FoodGrid2" Visibility="Collapsed" MouseDoubleClick="RemFood">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Materials" DisplayMemberBinding="{Binding Materials}" />
+                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Inventory}" />
+                            <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" />
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" />
+                            <!--<GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />-->
+                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <!--<Label Name="Food" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold" Visibility="Collapsed">Foods:</Label>
+                <DataGrid Name="FoodDataGrid" Margin="0,20,0,0" Visibility="Collapsed"/>-->
             </StackPanel>
         </Border>
         <Border Name="Available" BorderBrush="#FF333333" BorderThickness="2" Grid.Column="1" Margin="10" Visibility="Collapsed">
             <StackPanel>
                 <Label FontSize="20" Margin="10" HorizontalAlignment="Center" FontWeight="Bold">Change Available Food</Label>
                 <Button HorizontalAlignment="Center" Margin="0,20" Width="100" Height="20" Name="ChangeInventory" Content="Change Inventory" Click="ChangeInventory_Click"/>
-                <DataGrid Name="FoodGrid" Margin="0,20,0,0" Visibility="Collapsed"/>
+                <!--<DataGrid Name="FoodGrid" Margin="0,20,0,0" Visibility="Collapsed">
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Materials" DisplayMemberBinding="{Binding Materials}" />
+                        --><!--<GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Inventory}" />
+                        <GridViewColumn Header="Cash" DisplayMemberBinding="{Binding IsCash}" />
+                        <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />
+                        <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />--><!--
+                    </GridView>
+                </DataGrid>-->
+                <ListView x:Name="FoodGrid" Visibility="Collapsed" MouseDoubleClick="ChangeInv">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Materials" DisplayMemberBinding="{Binding Materials}" />
+                            <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Inventory}" />
+                            <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" />
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" />
+                            <!--<GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />-->
+                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
                 <TextBox Visibility="Collapsed" Name="txtNumber" PreviewTextInput="txtNumber_PreviewTextInput"  Text="{Binding Path=Number, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </Border>
@@ -167,8 +202,8 @@
                             <GridViewColumn Header="Order Date" DisplayMemberBinding="{Binding orderDate, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" />
                             <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding res.Name}" />
                             <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Price}" />
-                            <GridViewColumn Header="Payment" DisplayMemberBinding="{Binding IsCash}" />
-                            <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />
+                            <GridViewColumn Header="Cash" DisplayMemberBinding="{Binding IsCash}" />
+                            <!--<GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />-->
                             <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                         </GridView>
                     </ListView.View>

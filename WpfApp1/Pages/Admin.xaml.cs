@@ -90,7 +90,7 @@ namespace UserManagementSystem
             SearchReports.Visibility = Visibility.Collapsed;
             Unreviewed.Visibility = Visibility.Collapsed;
             AllReports.Visibility = Visibility.Collapsed;
-            Respond.Visibility = Visibility.Collapsed;
+            //Respond.Visibility = Visibility.Collapsed;
 
         }
         private void lvRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -129,7 +129,7 @@ namespace UserManagementSystem
             SearchRes.Visibility = Visibility.Visible;
             Unreviewed.Visibility= Visibility.Collapsed;
             AllReports.Visibility = Visibility.Collapsed;
-            Respond.Visibility = Visibility.Collapsed;
+            //Respond.Visibility = Visibility.Collapsed;
         }
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
@@ -147,7 +147,7 @@ namespace UserManagementSystem
             SearchRes.Visibility= Visibility.Collapsed;
             SearchReports.Visibility= Visibility.Collapsed;
             AllReports.Visibility = Visibility.Collapsed;
-            Respond.Visibility = Visibility.Collapsed;
+            //Respond.Visibility = Visibility.Collapsed;
         }
         private void SearchComplaintsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -155,18 +155,18 @@ namespace UserManagementSystem
             restaurant.Visibility = Visibility.Collapsed;
             SearchRes.Visibility = Visibility.Collapsed;
             AllReports.Visibility = Visibility.Collapsed;
-            Respond.Visibility = Visibility.Collapsed;
+            //Respond.Visibility = Visibility.Collapsed;
             Unreviewed.Visibility = Visibility.Collapsed;
         }
         private void RespondToComplaintsButton_Click(object sender, RoutedEventArgs e)
         {
             var unreviewedComplaints = adm.AllFeedBacks.Where(f => !f.isAnswered);
-            UnreviewedComplaintsGrid.ItemsSource = unreviewedComplaints;
+            //UnreviewedComplaintsGrid.ItemsSource = unreviewedComplaints;
             SearchReports.Visibility = Visibility.Collapsed;
             restaurant.Visibility = Visibility.Collapsed;
             SearchRes.Visibility = Visibility.Collapsed;
             AllReports.Visibility = Visibility.Collapsed;
-            Respond.Visibility = Visibility.Visible;
+            //Respond.Visibility = Visibility.Visible;
             Unreviewed.Visibility = Visibility.Collapsed;
         }
         private void ViewAllComplaintsButton_Click(object sender, RoutedEventArgs e)
@@ -176,7 +176,7 @@ namespace UserManagementSystem
             restaurant.Visibility = Visibility.Collapsed;
             SearchRes.Visibility = Visibility.Collapsed;
             AllReports.Visibility = Visibility.Visible;
-            Respond.Visibility = Visibility.Collapsed;
+           // Respond.Visibility = Visibility.Collapsed;
             Unreviewed.Visibility = Visibility.Collapsed;
         }
         public bool isDeli;
@@ -283,41 +283,99 @@ namespace UserManagementSystem
         //    SearchResultsGrid.ItemsSource = usersWithReviewedFeedbacks;
         //    SearchResultsGrid.Visibility = Visibility.Visible;
         //}
-        //private void SearchComplaints_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string username = UsernameSearchTextBox.Text;
-        //    string complaintTitle = ComplaintTitleSearchTextBox.Text;
-        //    string complainantName = ComplainantNameSearchTextBox.Text;
-        //    string restaurantName = RestaurantNameSearchTextBox.Text;
-        //    string reviewedStatus = ((ComboBoxItem)ReviewedStatusComboBox.SelectedItem).Content.ToString();
-
-        //    var complaints = adm.AllFeedBacks.Where(c =>
-        //        (string.IsNullOrEmpty(username) || c.Feedbackuser.username.Contains(username)) &&
-        //        (string.IsNullOrEmpty(complaintTitle) || c.title.Contains(complaintTitle)) &&
-        //        (string.IsNullOrEmpty(complainantName) || (c.Feedbackuser.firstName + " " + c.Feedbackuser.lastName).Contains(complainantName)) &&
-        //        (string.IsNullOrEmpty(restaurantName) || c.restaurant.Name.Contains(restaurantName)) &&
-        //        (reviewedStatus == "All" || (reviewedStatus == "Reviewed" && c.isAnswered) || (reviewedStatus == "Unreviewed" && !c.isAnswered))
-        //    );
-
-        //    SearchResultsGrid.ItemsSource = complaints;
-        //    SearchResultsGrid.Visibility = Visibility.Visible;
-        //}
-
-        private void SubmitResponse_Click(object sender, RoutedEventArgs e)
+        private void SearchComplaints_Click(object sender, RoutedEventArgs e)
         {
-            FeedBack selectedComplaint = (FeedBack)UnreviewedComplaintsGrid.SelectedItem;
-            if (selectedComplaint != null)
+            string username = UsernameSearchTextBox.Text;
+            string complaintTitle = ComplaintTitleSearchTextBox.Text;
+            string complainantName = ComplainantNameSearchTextBox.Text;
+            string restaurantName = RestaurantNameSearchTextBox.Text;
+            int reviewedStatus = ReviewedStatusComboBox.SelectedIndex;
+
+            //var complaints = adm.AllFeedBacks.Where(c =>
+            //    (string.IsNullOrEmpty(username) || c.Feedbackuser.username.Contains(username)) &&
+            //    (string.IsNullOrEmpty(complaintTitle) || c.title.Contains(complaintTitle)) &&
+            //    (string.IsNullOrEmpty(complainantName) || (c.Feedbackuser.firstName + " " + c.Feedbackuser.lastName).Contains(complainantName)) &&
+            //    (string.IsNullOrEmpty(restaurantName) || c.restaurant.Name.Contains(restaurantName)) &&
+            //    (reviewedStatus == 0 || (reviewedStatus == 1 && c.isAnswered) || (reviewedStatus == 2 && !c.isAnswered))
+            //);
+            var complaints = new List<FeedBack>(adm.AllFeedBacks);
+            if(!string.IsNullOrEmpty(UsernameSearchTextBox.Text))
             {
-                string response = ResponseTextBox.Text;
-                selectedComplaint.answerFeedback(response);
-                UnreviewedComplaintsGrid.Items.Refresh();
-                ResponseTextBox.Clear();
-                MessageBox.Show("Response submitted successfully!");
+                foreach(var item in complaints.ToList())
+                {
+                    if(item.Feedbackuser.username.Contains(username)==false)
+                    {
+                        complaints.Remove(item);
+                    }
+                }
             }
-            else
+            if (!string.IsNullOrEmpty(ComplaintTitleSearchTextBox.Text))
             {
-                MessageBox.Show("Please select a complaint to respond to.");
+                foreach (var item in complaints.ToList())
+                {
+                    if (item.title.Contains(complaintTitle) == false)
+                    {
+                        complaints.Remove(item);
+                    }
+                }
             }
+            if (!string.IsNullOrEmpty(ComplainantNameSearchTextBox.Text))
+            {
+                foreach (var item in complaints.ToList())
+                {
+                    if (item.user_Name.Contains(complainantName) == false)
+                    {
+                        complaints.Remove(item);
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(RestaurantNameSearchTextBox.Text))
+            {
+                foreach (var item in complaints.ToList())
+                {
+                    if (item.restaurant.Name.Contains(restaurantName) == false)
+                    {
+                        complaints.Remove(item);
+                    }
+                }
+            }
+            if(!string.IsNullOrEmpty(ReviewedStatusComboBox.Text))
+            {
+                //MessageBox.Show(ReviewedStatusComboBox.Text);
+                if(ReviewedStatusComboBox.Text== "Reviewed")
+                {
+                    complaints=complaints.Where(x=>x.isAnswered==true).ToList();
+                }
+                if(ReviewedStatusComboBox.Text== "Unreviewed")
+                {
+                    complaints = complaints.Where(x => x.isAnswered == false).ToList();
+                }
+            }
+            
+            //SearchResultsGrid.ItemsSource = complaints;
+            //SearchResultsGrid.Visibility = Visibility.Visible;
+            uun.ItemsSource = complaints;
+            uun.Items.Refresh();
+            //MessageBox.Show(complaints.ToList().Count.ToString());
+
+
         }
+
+        //private void SubmitResponse_Click(object sender, RoutedEventArgs e)
+        //{
+        //    FeedBack selectedComplaint = (FeedBack)UnreviewedComplaintsGrid.SelectedItem;
+        //    if (selectedComplaint != null)
+        //    {
+        //        string response = ResponseTextBox.Text;
+        //        selectedComplaint.answerFeedback(response);
+        //        UnreviewedComplaintsGrid.Items.Refresh();
+        //        ResponseTextBox.Clear();
+        //        MessageBox.Show("Response submitted successfully!");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select a complaint to respond to.");
+        //    }
+        //}
     }
 }

@@ -616,7 +616,7 @@ namespace UserManagementSystem
     }
     public class FeedBack
     {
-       // public Restaurant restaurant { get; set; }
+        public Restaurant restaurant { get; set; }
         public RegularUser Feedbackuser { get; set; }
         public string user_Name {  get; set; }
         public string title { get; set; }
@@ -625,7 +625,7 @@ namespace UserManagementSystem
         public string? answer { get; set; }
         public FeedBack(Restaurant restaurant,RegularUser regular, string title, string description)
         {
-            //this.restaurant = restaurant;
+            this.restaurant = restaurant;
             this.Feedbackuser = regular;
             user_Name =$"{Feedbackuser.firstName} {Feedbackuser.lastName}";
             this.title = title;

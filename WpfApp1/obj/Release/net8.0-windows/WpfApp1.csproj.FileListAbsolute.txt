@@ -70,3 +70,9 @@ C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Wpf
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\WpfApp1.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\WpfApp1.genruntimeconfig.cache
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\ref\WpfApp1.dll
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\AnswerPage.g.cs
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\AnswerPage.baml
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\ChangeInventory.g.cs
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\Food3.g.cs
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\ChangeInventory.baml
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Release\net8.0-windows\Pages\Food3.baml

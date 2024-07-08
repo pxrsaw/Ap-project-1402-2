@@ -13,7 +13,13 @@
     <Compile Update="Pages\AnswerPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\ChangeInventory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Food.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Food3.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\OrderComments.xaml.cs">
@@ -45,7 +51,13 @@
     <Page Update="Pages\AnswerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\ChangeInventory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Food.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Food3.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\OrderComments.xaml">

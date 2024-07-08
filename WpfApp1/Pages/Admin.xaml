@@ -16,7 +16,6 @@
                 <Button x:Name="SearchRestaurantButton" Content="Search Restaurant" Margin="0,0,0,10" Click="SearchRestaurantButton_Click" />
                 <Button x:Name="UnreviewedReportsButton" Content="View Unreviewed Reports" Margin="0,0,0,10" Click="UnreviewedReportsButton_Click" />
                 <Button x:Name="SearchComplaintsButton" Content="Search Complaints" Margin="0,0,0,10" Click="SearchComplaintsButton_Click" />
-                <Button x:Name="RespondToComplaintsButton" Content="Respond to Complaints" Margin="0,0,0,10" Click="RespondToComplaintsButton_Click" />
                 <Button x:Name="ViewAllComplaintsButton" Content="View All Complaints" Margin="0,0,0,10" Click="ViewAllComplaintsButton_Click" />
                 <Button x:Name="LogOutButton" Content="Log out" Margin="0,0,0,10" Click="LogOut_Click" />
             </StackPanel>
@@ -87,6 +86,7 @@
             </Grid>
         </Border>
         <Border BorderBrush="#FF333333" Name="SearchReports" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Search Complaints</Label>
 
@@ -119,8 +119,24 @@
                     </ComboBox>
                 </StackPanel>
 
-                <!--<Button x:Name="SearchComplaints" Content="Search" HorizontalAlignment="Center" Margin="0,20,0,0" Width="100" Height="30" Click="SearchComplaints_Click" />-->
+                <Button x:Name="SearchComplaints" Content="Search" HorizontalAlignment="Center" Margin="0,20,0,0" Width="100" Height="30" Click="SearchComplaints_Click" />
             </StackPanel>
+                <ListView x:Name="uun" Grid.Column="1" Margin="10"  >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding user_Name}" />
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding title}" />
+                            <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding restaurant.Name}" />
+                            <GridViewColumn Header="Description:" DisplayMemberBinding="{Binding description}" />
+                            <GridViewColumn Header="is answered" DisplayMemberBinding="{Binding isAnswered}" />
+                            <GridViewColumn Header="Answer" DisplayMemberBinding="{Binding answer}" />
+                            <!--<GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
+            <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
         </Border>
         <Border BorderBrush="#FF333333" Name="Unreviewed" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
             <StackPanel>
@@ -132,7 +148,7 @@
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding user_Name}" />
                             <GridViewColumn Header="Title" DisplayMemberBinding="{Binding title}" />
                             <GridViewColumn Header="Description:" DisplayMemberBinding="{Binding description}" />
-                            <!--<GridViewColumn Header="is answered" DisplayMemberBinding="{Binding isAnswered}" />-->
+                            <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding restaurant.Name}" />
                             <!--<GridViewColumn Header="Answer" DisplayMemberBinding="{Binding answer}" />-->
                             <!--<GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
                             <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />-->
@@ -141,18 +157,26 @@
                 </ListView>
             </StackPanel>
         </Border>
-        <Border BorderBrush="#FF333333" Name="Respond" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
-            <StackPanel>
-                <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Respond to Complaints</Label>
-                <DataGrid x:Name="UnreviewedComplaintsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" />
-                <TextBox x:Name="ResponseTextBox" Height="100" Margin="0,20,0,0" AcceptsReturn="True" TextWrapping="Wrap" />
-                <Button x:Name="SubmitResponse" Content="Submit Response" HorizontalAlignment="Center" Margin="0,20,0,0" Width="150" Height="30" Click="SubmitResponse_Click" />
-            </StackPanel>
-        </Border>
+        
         <Border BorderBrush="#FF333333" Name="AllReports" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
             <StackPanel>
                 <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">All Complaints</Label>
-                <DataGrid x:Name="AllComplaintsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" />
+                <!--<DataGrid x:Name="AllComplaintsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" />-->
+                <ListView x:Name="AllComplaintsGrid" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding user_Name}" />
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding title}" />
+                            <GridViewColumn Header="Description:" DisplayMemberBinding="{Binding description}" />
+                            <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding restaurant.Name}" />
+                            <GridViewColumn Header="is answered" DisplayMemberBinding="{Binding isAnswered}" />
+                            <GridViewColumn Header="Answer" DisplayMemberBinding="{Binding answer}" />
+                            <!--<GridViewColumn Header="Answer" DisplayMemberBinding="{Binding answer}" />-->
+                            <!--<GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
+            <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </Border>
     </Grid>

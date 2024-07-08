@@ -62,9 +62,11 @@ namespace UserManagementSystem
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant;//bejaye in restaurant list food roo bezar.
-            FoodDataGrid.Visibility = Visibility.Visible;
-            Food.Visibility = Visibility.Visible;
+            //FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant.Menu;//bejaye in restaurant list food roo bezar.
+            //FoodDataGrid.Visibility = Visibility.Visible;
+            //Food.Visibility = Visibility.Visible;
+            var hhgf = new Food3(restaurant, this);
+            hhgf.Show();
         }
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
@@ -74,10 +76,16 @@ namespace UserManagementSystem
         }
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant;//bejaye in restaurant list food roo bezar.
-            FoodDataGrid.Visibility = Visibility.Visible;
+            //FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant;//bejaye in restaurant list food roo bezar.
+            FoodGrid2.Visibility = Visibility.Visible;
+            FoodGrid2.ItemsSource = restaurant.Menu;
         }
-        
+        public void RemFood(object sender, RoutedEventArgs e)
+        {
+            var it2=(Food)FoodGrid2.SelectedItem;
+            restaurant.Menu.Remove(it2);
+            FoodGrid2.Items.Refresh();
+        }
         private void ChangeInventory_Click(object sender, RoutedEventArgs e)
         {
             //List<Food> Menuu = new List<Food>();
@@ -88,14 +96,25 @@ namespace UserManagementSystem
             //        Menuu.Add(v2);
             //    }
             //}
-
-            FoodGrid.ItemsSource = (System.Collections.IEnumerable)restaurant.Menu;//bejaye in restaurant list food roo bezar.
+            //var ffg=new List<Food>(restaurant.Menu);
+            FoodGrid.ItemsSource = restaurant.Menu;//bejaye in restaurant list food roo bezar.
             FoodGrid.Visibility = Visibility.Visible;
             txtNumber.Visibility = Visibility.Visible;
         }
         private void txtNumber_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = !int.TryParse(e.Text, out int result);
+        }
+        private void ChangeInv(object sender, RoutedEventArgs e)
+        {
+            Food fd1=(Food)FoodGrid.SelectedItem;
+            //MessageBox.Show(fd1.Name);
+            var qwe = new ChangeInventory(fd1,this);
+            qwe.Show();
+        }
+        public void refreshh()
+        {
+            FoodGrid.Items.Refresh();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

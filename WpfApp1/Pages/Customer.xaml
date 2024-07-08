@@ -19,7 +19,7 @@
             </StackPanel>
         </Border>
 
-        <Border BorderBrush="#FF333333" Name="Profile" BorderThickness="2" Grid.Column="1" Visibility="Visible"  Margin="10">
+        <Border BorderBrush="#FF333333" Name="Profile" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
             <StackPanel HorizontalAlignment="Stretch">
                 <Label Name="Laabel" FontSize="30" Margin="0,10,0,0" FontWeight="Heavy" HorizontalAlignment="Center" FontFamily="Times New Roman">Profile</Label>
                 <!--<ListView x:Name="ProfileListView" Height="200">

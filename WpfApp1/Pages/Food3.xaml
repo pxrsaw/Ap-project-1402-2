@@ -1,0 +1,46 @@
+﻿<Window x:Class="UserManagementSystem.Food3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserManagementSystem"
+        mc:Ignorable="d"
+        Background="BlanchedAlmond"
+        Title="Food" Height="450" Width="800">
+
+    <Grid Background="LightSalmon">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+
+        </Grid.ColumnDefinitions>
+        <Border x:Name="Menu" Background="Gray" Visibility="Visible" Margin="10" BorderThickness="2" BorderBrush="#FF333333">
+            <StackPanel Margin="20" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Name:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="nameTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Materials:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="matTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Type:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="typeTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Availability:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="invTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Price:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="priceTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+                <Button Click="AddBut" Content="Add" Width="100" Height="30"/>
+
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

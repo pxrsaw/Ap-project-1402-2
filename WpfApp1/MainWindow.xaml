@@ -1,0 +1,32 @@
+﻿<Window x:Class="UserManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:pages="clr-namespace:UserManagementSystem"
+        Title="Login" Height="450" Width="800"
+        Background="#FFE5E5E5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label FontSize="24" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10">Welcome</Label>
+
+        <Label FontSize="20" Grid.Row="1" Grid.Column="0" Content="Username:" Margin="10"/>
+        <TextBox x:Name="UsernameTextBox" Grid.Row="1" Grid.Column="1" Margin="10" FontSize="20"/>
+
+        <Label FontSize="20" Grid.Row="2" Grid.Column="0" Content="Password:" Margin="10"/>
+        <TextBox x:Name="PasswordTextBox" Grid.Row="2" Grid.Column="1" Margin="10" FontSize="20"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Login" Margin="10" Click="Button_Click"  HorizontalAlignment="Center" Height="40" Width="100" FontSize="20"/>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Sign Up" Margin="140" Click="Button_Click_1" HorizontalAlignment="Center" Width="100" Height="25" FontSize="15"/>
+    </Grid>
+</Window>

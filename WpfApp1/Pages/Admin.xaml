@@ -1,0 +1,129 @@
+﻿<Window x:Class="UserManagementSystem.AdminPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Admin Panel" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="#FF333333" BorderThickness="2" Margin="10">
+            <StackPanel Margin="20">
+                <TextBlock Text="Admin Panel" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" />
+
+                <Button x:Name="RegisterRestaurantButton" Content="Register Restaurant" Margin="0,0,0,10" Click="RegisterRestaurantButton_Click" />
+                <Button x:Name="SearchRestaurantButton" Content="Search Restaurant" Margin="0,0,0,10" Click="SearchRestaurantButton_Click" />
+                <Button x:Name="UnreviewedReportsButton" Content="View Unreviewed Reports" Margin="0,0,0,10" Click="UnreviewedReportsButton_Click" />
+                <Button x:Name="SearchComplaintsButton" Content="Search Complaints" Margin="0,0,0,10" Click="SearchComplaintsButton_Click" />
+                <Button x:Name="RespondToComplaintsButton" Content="Respond to Complaints" Margin="0,0,0,10" Click="RespondToComplaintsButton_Click" />
+                <Button x:Name="ViewAllComplaintsButton" Content="View All Complaints" Margin="0,0,0,10" Click="ViewAllComplaintsButton_Click" />
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="#FF333333" Name="restaurant" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel>
+                <Label HorizontalAlignment="Center" FontSize="15" FontWeight="Bold">Register New Restaurant</Label>
+                <Label HorizontalAlignment="Left" FontSize="10" FontWeight="ExtraBold">Username:</Label>
+                <TextBox x:Name="Username" Margin="10" FontSize="10"/>
+                <Label HorizontalAlignment="Left" FontSize="10" FontWeight="ExtraBold">Name:</Label>
+                <TextBox x:Name="Namee" Margin="10" FontSize="10"/>
+                <Label HorizontalAlignment="Left" FontSize="10" FontWeight="Bold">City:</Label>
+                <TextBox x:Name="City" Margin="10" FontSize="10"/>
+                <Label HorizontalAlignment="Left" FontSize="10" FontWeight="Bold">Address:</Label>
+                <TextBox x:Name="Address" Margin="10" FontSize="10"/>
+                <CheckBox Content="Dine-in" Checked="DinCheck" Unchecked="DinNotCheck" FontSize="10" />
+                <CheckBox Content="Delivery" HorizontalAlignment="Left" Checked="DelCheck" Unchecked="DelNotCheck" FontSize="10" ></CheckBox>
+                <Button Name="AddRes" Content="Add" HorizontalAlignment="Center" Margin="0,10" Width="100" Height="20" Click="AddRes_Click"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#FF333333" Name="SearchRes" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Label Content="Search by City:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="CitySearchTextBox" Width="150" FontSize="16" />
+                    <Button x:Name="SearchByCity" Content="Search" Margin="10,0,0,0" Click="SearchByCity_Click" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Search by Name:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="NameSearchTextBox" Width="150" FontSize="16" />
+                    <Button x:Name="SearchByName" Content="Search" Margin="10,0,0,0" Click="SearchByName_Click" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Minimum Rating:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="MinRatingTextBox" Width="50" FontSize="16" />
+                    <Button x:Name="SearchByRating" Content="Search" Margin="10,0,0,0" Click="SearchByRating_Click" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Label Content="Search Unreviewed Complaints:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <Button x:Name="SearchUnreviewedFeedbacks" Content="Search" Margin="10,0,0,0" Click="SearchUnreviewedFeedbacks_Click" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Search Reviewed Complaints:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <Button x:Name="SearchReviewedFeedbacks" Content="Search" Margin="10,0,0,0" Click="SearchReviewedFeedbacks_Click" />
+                </StackPanel>
+                <DataGrid x:Name="SearchResultsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" Visibility="Collapsed" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#FF333333" Name="SearchReports" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel>
+                <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Search Complaints</Label>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Username:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="UsernameSearchTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Complaint Title:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="ComplaintTitleSearchTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Complainant Name:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="ComplainantNameSearchTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Restaurant Name:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <TextBox x:Name="RestaurantNameSearchTextBox" Width="150" FontSize="16" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Reviewed Status:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <ComboBox x:Name="ReviewedStatusComboBox" Width="150" FontSize="16">
+                        <ComboBoxItem Content="All" />
+                        <ComboBoxItem Content="Reviewed" />
+                        <ComboBoxItem Content="Unreviewed" />
+                    </ComboBox>
+                </StackPanel>
+
+                <Button x:Name="SearchComplaints" Content="Search" HorizontalAlignment="Center" Margin="0,20,0,0" Width="100" Height="30" Click="SearchComplaints_Click" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#FF333333" Name="Unreviewed" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel>
+                <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Unreviewed Feedbacks</Label>
+                <DataGrid x:Name="UnreviewedFeedbacksGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" Width="auto"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#FF333333" Name="Respond" BorderThickness="2" Grid.Column="1" Visibility="Collapsed" Margin="10">
+            <StackPanel>
+                <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Respond to Complaints</Label>
+                <DataGrid x:Name="UnreviewedComplaintsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" />
+                <TextBox x:Name="ResponseTextBox" Height="100" Margin="0,20,0,0" AcceptsReturn="True" TextWrapping="Wrap" />
+                <Button x:Name="SubmitResponse" Content="Submit Response" HorizontalAlignment="Center" Margin="0,20,0,0" Width="150" Height="30" Click="SubmitResponse_Click" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="#FF333333" Name="AllReports" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
+            <StackPanel>
+                <Label HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">All Complaints</Label>
+                <DataGrid x:Name="AllComplaintsGrid" AutoGenerateColumns="True" IsReadOnly="True" Margin="0,20,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

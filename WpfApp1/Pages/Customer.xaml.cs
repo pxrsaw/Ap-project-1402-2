@@ -3,14 +3,13 @@ using System.Buffers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfApp1;
 
 namespace UserManagementSystem
 {
     public partial class Customer : Window
     {
         RegularUser regularUser;
-        private List<FeedBack> _feedbacks;
+        private List<FeedBack> _feedbacks { get; set; }
         public Customer(RegularUser regularUser)
         {
             this.regularUser = regularUser;
@@ -29,6 +28,7 @@ namespace UserManagementSystem
 
         private void SearchRestaurantButton_Click(object sender, RoutedEventArgs e)
         {
+            
             Profile.Visibility = Visibility.Collapsed;
             Search.Visibility = Visibility.Visible;
             Order.Visibility = Visibility.Collapsed;
@@ -95,34 +95,67 @@ namespace UserManagementSystem
             cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             // Filter restaurants based on user input
-            List<Restaurant> filteredRestaurants = Restaurant.AllRestaurants.Where(r => (string.IsNullOrEmpty(txtRestaurantName.Text) 
-            || r.Name.Contains(txtRestaurantName.Text)) && (string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()) || r.city == cbCity.SelectedValue.ToString()) 
-            && (string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()) || (cbAcceptType.SelectedValue.ToString() == "Delivery" && r.isDelivery) 
-            || (cbAcceptType.SelectedValue.ToString() == "Dine-in" && r.isDine_in)) ).ToList(); 
+            //List<Restaurant> filteredRestaurants = Restaurant.AllRestaurants.Where(r =>
+            //    (string.IsNullOrEmpty(txtRestaurantName.Text) || r.Name.Contains(txtRestaurantName.Text)) &&
+            //    (string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()) || r.city == cbCity.SelectedValue.ToString()) &&
+            //    (string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()) || (cbAcceptType.SelectedValue.ToString() == "Delivery" && r.isDelivery) || (cbAcceptType.SelectedValue.ToString() == "Dine-in" && r.isDine_in)) //&&
+            //                                                                                                                                                                                                                   //r.score >= sliderMinScore.Value
+            //).ToList();
 
             // Update the ListView with filtered restaurants
-            lvRestaurants.ItemsSource = filteredRestaurants; 
-        }
-        private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
-        { 
-            // Get the selected restaurant from the ListView
-            Restaurant selectedRestaurant = (Restaurant)lvRestaurants.SelectedItem; 
+            List<Restaurant> filteredRestaurants=new List<Restaurant>(Restaurant.AllRestaurants);
+            if(!string.IsNullOrWhiteSpace(txtRestaurantName.Text))
+            {
+                filteredRestaurants = RegularUser.SearchByName(filteredRestaurants, txtRestaurantName.Text);
+            }
+            //MessageBox.Show(cbCity.SelectedValue?.ToString());
+            if (!string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()))
+            {
+                //filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants,cbCity.SelectedValue?.ToString());
+                //MessageBox.Show(cbCity.sele);
+                if(cbCity.SelectedIndex==1)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants,"tehran");
 
-            // Navigate to the Restaurant page and bind the selected restaurant
-            NavigateToRestaurantPage(selectedRestaurant); 
+                }
+                if(cbCity.SelectedIndex==2)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "shiraz");
+                }
+                if(cbCity.SelectedIndex==3) 
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "mashhad");
+                }
+                if (cbCity.SelectedIndex == 4)
+                {
+                    filteredRestaurants = RegularUser.SearchByCity(filteredRestaurants, "esfehan");
+                }
+            }
+            if(!string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()))
+            {
+                //MessageBox.Show(cbAcceptType.SelectedValue.ToString());
+                if(cbAcceptType.SelectedIndex==0)
+                {
+                    filteredRestaurants = RegularUser.SearchByDelivery(filteredRestaurants);
+                    //MessageBox.Show("hi");
+                }
+                if (cbAcceptType.SelectedIndex==1)
+                {
+                    filteredRestaurants = RegularUser.SearchByDineIn(filteredRestaurants);
+                }
+                if(cbAcceptType.SelectedIndex==3)
+                {
+                    filteredRestaurants = RegularUser.SearchByDineIn(filteredRestaurants);
+                    filteredRestaurants = RegularUser.SearchByDelivery(filteredRestaurants);
+                }
+            }
+            filteredRestaurants = RegularUser.SearchByScore(sliderMinScore.Value, filteredRestaurants);
+            //MessageBox.Show(Restaurant.AllRestaurants[0].restaurantScore.ToString());
+            lvRestaurants.ItemsSource = filteredRestaurants;
         }
-        private void NavigateToRestaurantPage(Restaurant restaurant) 
-        {
-            // Create a new instance of the Restaurant page and pass the selected restaurant
-            WpfApp1.Pages.RestaurantPage restaurantPage = new WpfApp1.Pages.RestaurantPage(restaurant); 
-            restaurantPage.Show();
-        }
-
-        
         private void RefreshComplaints()
         {
             ComplaintsListView.ItemsSource = regularUser.feedBacks;
@@ -179,11 +212,31 @@ namespace UserManagementSystem
         {
             RefreshComplaints();
         }
+
+        private void lvOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvOrders.SelectedItem = regularUser.AllUserOrders;
+        }
+
         private void Gold_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected restaurant from the ListView
+            Restaurant selectedRestaurant = (Restaurant)lvRestaurants.SelectedItem;
 
+            // Navigate to the Restaurant page and bind the selected restaurant
+            NavigateToRestaurantPage(selectedRestaurant);
+        }
+        private void NavigateToRestaurantPage(Restaurant restaurant)
+        {
+            // Create a new instance of the Restaurant page and pass the selected restaurant
+            UserManagementSystem.RestaurantPage restaurantPage = new UserManagementSystem.RestaurantPage(restaurant);
+            //MessageBox.Show("hi");
+            restaurantPage.Show();
+        }
         private void Silver_Click(object sender, RoutedEventArgs e)
         {
 
@@ -193,7 +246,6 @@ namespace UserManagementSystem
         {
 
         }
-
         private void lvRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lvOrders.SelectedItem = regularUser.AllUserOrders;

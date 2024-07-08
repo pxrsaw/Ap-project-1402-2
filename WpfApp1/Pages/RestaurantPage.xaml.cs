@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserManagementSystem;
 
-namespace WpfApp1.Pages
+namespace UserManagementSystem
 {
     /// <summary>
     /// Interaction logic for RestaurantPage.xaml
@@ -22,9 +22,10 @@ namespace WpfApp1.Pages
     public partial class RestaurantPage : Window
     {
         private Restaurant restaurant;
-        public RestaurantPage(Restaurant restaurant)
+        public RestaurantPage(Restaurant restaurantt)
         {
-            this.restaurant = restaurant; 
+            restaurant = restaurantt;
+            //MessageBox.Show(restaurant.Name);
             InitializeComponent();
         }
 

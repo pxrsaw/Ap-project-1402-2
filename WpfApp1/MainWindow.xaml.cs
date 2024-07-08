@@ -147,34 +147,34 @@ namespace UserManagementSystem
         //{
         //   //Wallet += money;
         //}
-        public List<Restaurant> SearchByCity(List<Restaurant> rs, string cty)
+        public static List<Restaurant> SearchByCity(List<Restaurant> rs, string cty)
         {
 
-            foreach (Restaurant r1 in rs)
+            foreach (Restaurant r1 in rs.ToList())
             {
-                if (r1.city != cty)
+                if (r1.city.ToLower() != cty)
                 {
                     rs.Remove(r1);
                 }
             }
             return rs;
         }
-        public List<Restaurant> SearchByName(List<Restaurant> rs, string nm)
+        public static List<Restaurant> SearchByName(List<Restaurant> rs, string nm)
         {
-
-            foreach (Restaurant r1 in rs)
+            
+            foreach (Restaurant r1 in rs.ToList())
             {
-                if (r1.Name.Contains(nm) == false)
+                if (r1.Name.ToLower().Contains(nm.ToLower()) == false)
                 {
                     rs.Remove(r1);
                 }
             }
             return rs;
         }
-        public List<Restaurant> SearchByDineIn(List<Restaurant> rs)
+        public static List<Restaurant> SearchByDineIn(List<Restaurant> rs)
         {
 
-            foreach (Restaurant r1 in rs)
+            foreach (Restaurant r1 in rs.ToList())
             {
                 if (r1.isDine_in == false)
                 {
@@ -183,10 +183,10 @@ namespace UserManagementSystem
             }
             return rs;
         }
-        public List<Restaurant> SearchByDelivery(List<Restaurant> rs)
+        public static List<Restaurant> SearchByDelivery(List<Restaurant> rs)
         {
 
-            foreach (Restaurant r1 in rs)
+            foreach (Restaurant r1 in rs.ToList())
             {
                 if (r1.isDelivery == false)
                 {
@@ -195,10 +195,10 @@ namespace UserManagementSystem
             }
             return rs;
         }
-        public List<Restaurant> SearchByScore(float sc, List<Restaurant> rs)
+        public static List<Restaurant> SearchByScore(double sc, List<Restaurant> rs)
         {
 
-            foreach (Restaurant r1 in rs)
+            foreach (Restaurant r1 in rs.ToList())
             {
                 if (r1.restaurantScore < sc)
                 {

@@ -73,7 +73,12 @@ namespace UserManagementSystem
             // Populate city combobox
             cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
         }
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var MainWindow=new MainWindow();
+            MainWindow.Show();
+            Close();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Filter restaurants based on user input

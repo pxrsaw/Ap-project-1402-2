@@ -19,7 +19,12 @@ namespace UserManagementSystem
             Available.Visibility = Visibility.Collapsed;
             Change.Visibility = Visibility.Visible;
         }
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var MainWindow = new MainWindow();
+            MainWindow.Show();
+            Close();
+        }
         private void ChangeAvailableFoodsButton_Click(object sender, RoutedEventArgs e)
         {
             Order.Visibility = Visibility.Collapsed;

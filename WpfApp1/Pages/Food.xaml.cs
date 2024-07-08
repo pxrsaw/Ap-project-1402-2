@@ -86,6 +86,11 @@ namespace UserManagementSystem
             qqa3.Visibility = Visibility.Visible;
 
         }
+        public void AddCm(object sender, RoutedEventArgs e)
+        {
+            var vfd=new FoodComment(food1,ru12);
+            vfd.Show();
+        }
         public void subRate(object sender, RoutedEventArgs e)
         {
             float f1;

@@ -29,6 +29,7 @@
                 </StackPanel>
 
                 <Button Click="subbutn" Content="Submit" Width="50"/>
+                <Button Click="AddCm" Content="comments" Width="50"/>
                 <Button x:Name="qqa2" Click="rateBut" Content="Rate item" Width="50"/>
                 <StackPanel x:Name="qqa3" Orientation="Horizontal">
                     <Label Content="Rate:"/>

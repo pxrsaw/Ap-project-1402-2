@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,14 +16,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 namespace UserManagementSystem
 {
+    
     public class user
     {
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
         public string phoneNumber { get; set; }
-        public string? gender { get; set; }
-        public string? postalCode { get; set; }
+        public string gender { get; set; }
+        public string postalCode { get; set; }
         public static List<user> AllUsers = new List<user>();
 
         public user(string username, string password, string email, string phoneNumber)
@@ -579,7 +581,7 @@ namespace UserManagementSystem
         public bool isEdited { get; set; }
         public DateTime AddedTime { get; set; }
         public List<string> answerComments { get; set; }
-        public Comment(string cm, RegularUser ru, Food fdd, float us)
+        public Comment(string cm, RegularUser ru, Food fdd, float? us)
         {
             this.cm = cm;
             this.ru = ru;
@@ -589,6 +591,7 @@ namespace UserManagementSystem
             isEdited = false;
             AddedTime=DateTime.Now;
             answerComments = new List<string>();
+            fdd.Comments.Add(this);
         }
         public Comment(string cm, RegularUser ru, Order orderr)
         {
@@ -648,7 +651,11 @@ namespace UserManagementSystem
         public MainWindow()
         {
             RegularUser ru1 = new RegularUser("ggh", "uu", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
-            new adm("parsa2", "parsa2", "", "");
+            new adm("parsa2", "parsa2", "igg", "gjjgcv");
+            new adm("hhh", "ffd", "ygf", "ffss");
+
+            //File.WriteAllText("Users.txt","");
+            Files.SaveInFiles();
             var res1 = new Restaurant("hello1", "res1", "res1","lk" , "tf", "tehran", false, true, "kkkkh");
             Food fd4 = new Food("hh", "jj", "Food", 6, 78);
             Food fd7=new Food("hh", "jj", "Drink", 6, 78);

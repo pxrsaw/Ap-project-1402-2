@@ -395,3 +395,5 @@ C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\ChangeInventory.baml
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food3.g.cs
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food3.baml
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.baml
+C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.g.cs

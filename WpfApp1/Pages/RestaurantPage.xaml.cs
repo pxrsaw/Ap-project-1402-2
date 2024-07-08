@@ -247,6 +247,7 @@ namespace UserManagementSystem
             }
             ru10.orderFood(OrderDic, restaurant, !isOnline);
             OrderDic.Clear();
+            Close();
             //var cst=new Customer()
 
         }

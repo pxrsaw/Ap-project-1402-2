@@ -3,6 +3,7 @@ using System.Buffers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfApp1;
 
 namespace UserManagementSystem
 {
@@ -94,19 +95,34 @@ namespace UserManagementSystem
             cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             // Filter restaurants based on user input
-            List<Restaurant> filteredRestaurants = Restaurant.AllRestaurants.Where(r =>
-                (string.IsNullOrEmpty(txtRestaurantName.Text) || r.Name.Contains(txtRestaurantName.Text)) &&
-                (string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()) || r.city == cbCity.SelectedValue.ToString()) &&
-                (string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()) || (cbAcceptType.SelectedValue.ToString() == "Delivery" && r.isDelivery) || (cbAcceptType.SelectedValue.ToString() == "Dine-in" && r.isDine_in)) //&&
-                                                                                                                                                                                                                               //r.score >= sliderMinScore.Value
-            ).ToList();
+            List<Restaurant> filteredRestaurants = Restaurant.AllRestaurants.Where(r => (string.IsNullOrEmpty(txtRestaurantName.Text) 
+            || r.Name.Contains(txtRestaurantName.Text)) && (string.IsNullOrEmpty(cbCity.SelectedValue?.ToString()) || r.city == cbCity.SelectedValue.ToString()) 
+            && (string.IsNullOrEmpty(cbAcceptType.SelectedValue?.ToString()) || (cbAcceptType.SelectedValue.ToString() == "Delivery" && r.isDelivery) 
+            || (cbAcceptType.SelectedValue.ToString() == "Dine-in" && r.isDine_in)) ).ToList(); 
 
             // Update the ListView with filtered restaurants
-            lvRestaurants.ItemsSource = filteredRestaurants;
+            lvRestaurants.ItemsSource = filteredRestaurants; 
         }
+        private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e) 
+        { 
+            // Get the selected restaurant from the ListView
+            Restaurant selectedRestaurant = (Restaurant)lvRestaurants.SelectedItem; 
+
+            // Navigate to the Restaurant page and bind the selected restaurant
+            NavigateToRestaurantPage(selectedRestaurant); 
+        }
+        private void NavigateToRestaurantPage(Restaurant restaurant) 
+        {
+            // Create a new instance of the Restaurant page and pass the selected restaurant
+            WpfApp1.Pages.RestaurantPage restaurantPage = new WpfApp1.Pages.RestaurantPage(restaurant); 
+            restaurantPage.Show();
+        }
+
+        
         private void RefreshComplaints()
         {
             ComplaintsListView.ItemsSource = regularUser.feedBacks;
@@ -163,12 +179,6 @@ namespace UserManagementSystem
         {
             RefreshComplaints();
         }
-
-        private void lvOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lvOrders.SelectedItem = regularUser.AllUserOrders;
-        }
-
         private void Gold_Click(object sender, RoutedEventArgs e)
         {
 
@@ -182,6 +192,11 @@ namespace UserManagementSystem
         private void Bronze_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void lvRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvOrders.SelectedItem = regularUser.AllUserOrders;
         }
     }
 }

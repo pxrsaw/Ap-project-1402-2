@@ -88,7 +88,7 @@
                     <Button Content="Search" Click="Button_Click" />
                 </StackPanel>
 
-                <ListView x:Name="lvRestaurants" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged">
+                <ListView x:Name="lvRestaurants" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged" MouseDoubleClick="lvRestaurants_MouseDoubleClick">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />

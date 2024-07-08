@@ -188,14 +188,12 @@ C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.pdb
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Admin.baml
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Customer.baml
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\ResturantManagment.baml
-C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\UserManagmentSystem.baml
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Admin.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Customer.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\ResturantManagment.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\signup.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\signupsubmit.g.cs
-C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\UserManagmentSystem.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.cache
 C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.lref
@@ -244,3 +242,5 @@ C:\Users\User\Desktop\test12\test8\WpfApp1\obj\Debug\net8.0-windows\refint\WpfAp
 C:\Users\User\Desktop\test12\test8\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.pdb
 C:\Users\User\Desktop\test12\test8\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.genruntimeconfig.cache
 C:\Users\User\Desktop\test12\test8\WpfApp1\obj\Debug\net8.0-windows\ref\WpfApp1.dll
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.g.cs
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.baml

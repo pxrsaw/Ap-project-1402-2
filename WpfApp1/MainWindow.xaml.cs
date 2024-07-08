@@ -582,12 +582,19 @@ namespace UserManagementSystem
             RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
             new adm("parsa2", "parsa2", "", "");
             var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, false, "");
-            Food fd4 = new Food("hh", "jj", "Drinks", 6, 78);
+            Food fd4 = new Food("hh", "jj", "Food", 6, 78);
+            Food fd7=new Food("hh", "jj", "Drink", 6, 78);
+            Food fd8 = new Food("hh", "jj", "Appetizer", 6, 78);
+            Food fd9 = new Food("hh", "jj", "Dessert", 6, 78);
+
             res1.Menu.Add(fd4);
+            res1.Menu.Add(fd7);
+            res1.Menu.Add(fd8);
+            res1.Menu.Add(fd9);
             FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
             //Food[] fd5 = new Food[1];
             //fd5[0] = fd4;
-            res1.Menu.Add(fd4);
+            //res1.Menu.Add(fd4);
             InitializeComponent();
         }
 

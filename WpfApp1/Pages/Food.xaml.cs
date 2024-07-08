@@ -12,15 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Pages
+namespace UserManagementSystem
 {
     /// <summary>
     /// Interaction logic for Food.xaml
     /// </summary>
-    public partial class Food : Window
+    public partial class Food2 : Window
     {
         private Food food1;
-        public Food(Food food)
+        public Food2(Food food)
         {
             food1 = food;
             InitializeComponent();

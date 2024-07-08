@@ -19,9 +19,13 @@
                 <StackPanel Orientation="Horizontal">
 
 
-                    <ListView Grid.Row="1" x:Name="ComplaintsListView" Margin="0,20,0,20" Height="270" Width="92" RenderTransformOrigin="-3.244,0.491">
-
-                                <!--<GridView>
+                    <ListView Grid.Row="1" x:Name="ComplaintsListView" Margin="0,20,0,20" Height="270" Width="92" RenderTransformOrigin="-3.244,0.491" MouseDoubleClick="ComplaintsListView_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Foods" DisplayMemberBinding="{Binding Foods}" Width="92"/>
+                            </GridView>
+                        </ListView.View>
+                        <!--<GridView>
                                     <GridViewColumn Header="Foods" DisplayMemberBinding="{Binding Food}" Width="120" />
                                     --><!--<GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
              <GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\User\Desktop\lst\test8\WpfApp1\obj\Debug\net8.0-windows\
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\
 WpfApp1
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\User\Desktop\lst\test8\WpfApp1\App.xaml
-8-1700511185
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\App.xaml
+9-693683798
 
-13-354118688
-198-1509178875
-MainWindow.xaml;Pages\Admin.xaml;Pages\Customer.xaml;Pages\RestaurantPage.xaml;Pages\ResturantManagment.xaml;Pages\signup.xaml;Pages\signupsubmit.xaml;Pages\UserManagmentSystem.xaml;
+14-1896897502
+1981451641563
+MainWindow.xaml;Pages\Admin.xaml;Pages\Customer.xaml;Pages\Food.xaml;Pages\RestaurantPage.xaml;Pages\ResturantManagment.xaml;Pages\signup.xaml;Pages\signupsubmit.xaml;Pages\UserManagmentSystem.xaml;
 
-False
+True
 

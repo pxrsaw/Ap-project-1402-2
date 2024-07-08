@@ -33,6 +33,8 @@ namespace UserManagementSystem
                 stackpanel.Orientation = Orientation.Horizontal;
                 //item.
             }
+            string[] Foods = restaurant.Menu.Select(r => r.Name).ToArray();
+            ComplaintsListView.ItemsSource = Foods;
         }
 
         private void Reserve_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,15 @@ namespace UserManagementSystem
         private void Score_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ComplaintsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Food selectedFood = (Food)ComplaintsListView.SelectedItem;
+
+            UserManagementSystem.Food Selectedfood = new WpfApp1.Pages.Food(selectedFood);
+
+            Selectedfood.Show();
         }
     }
 }

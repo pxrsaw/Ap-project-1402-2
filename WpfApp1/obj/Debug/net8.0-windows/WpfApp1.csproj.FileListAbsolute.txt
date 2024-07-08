@@ -310,3 +310,8 @@ C:\Users\User\Desktop\lst\test8\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.genrunt
 C:\Users\User\Desktop\lst\test8\WpfApp1\obj\Debug\net8.0-windows\ref\WpfApp1.dll
 C:\Users\User\Desktop\lst\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.g.cs
 C:\Users\User\Desktop\lst\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.baml
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.g.cs
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.baml
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Foods.g.cs
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Foods.baml
+C:\Users\Mohammad\Desktop\WPF\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food.g.cs

@@ -34,7 +34,12 @@ namespace UserManagementSystem
             AllReports.Visibility = Visibility.Collapsed;
             Respond.Visibility = Visibility.Collapsed;
         }
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var MainWindow = new MainWindow();
+            MainWindow.Show();
+            Close();
+        }
         private void UnreviewedReportsButton_Click(object sender, RoutedEventArgs e)
         {
             var unreviewedFeedbacks = adm.AllFeedBacks.Where(f => !f.isAnswered).OrderByDescending(f => f.Feedbackuser.AllUserOrders.LastOrDefault()?.orderDate ?? DateTime.MinValue);

@@ -104,7 +104,12 @@ namespace UserManagementSystem
             string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
             RestaurantComboBox.ItemsSource = Names;
         }
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var MainWindow = new MainWindow();
+            MainWindow.Show();
+            Close();
+        }
         private void SubmitComplaintButton_Click(object sender, RoutedEventArgs e)
         {
             Restaurant Res = null;
@@ -120,7 +125,7 @@ namespace UserManagementSystem
             string description = DescriptionTextBox.Text;
 
             FeedBack newFeedBack = new FeedBack(Res, regularUser, title, description);
-            regularUser.feedBacks.Add(newFeedBack);
+           // regularUser.feedBacks.Add(newFeedBack);
 
             RefreshComplaints();
             TitleTextBox.Clear();

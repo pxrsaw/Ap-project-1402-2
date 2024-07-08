@@ -66,7 +66,12 @@ namespace UserManagementSystem
             FoodDataGrid.Visibility = Visibility.Visible;
             Food.Visibility = Visibility.Visible;
         }
-
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            var MainWindow = new MainWindow();
+            MainWindow.Show();
+            Close();
+        }
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant;//bejaye in restaurant list food roo bezar.

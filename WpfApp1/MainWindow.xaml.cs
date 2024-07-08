@@ -583,7 +583,7 @@ namespace UserManagementSystem
         {
             RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
             new adm("parsa2", "parsa2", "", "");
-            var res1 = new Restaurant("", "res1", "res1", "", "", "tehran", false, false, "");
+            var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, false, "");
             Food fd4 = new Food("hh", "jj", "drink", 6, 78);
             FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
             Food[] fd5 = new Food[1];

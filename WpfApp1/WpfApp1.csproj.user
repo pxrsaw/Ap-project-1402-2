@@ -13,6 +13,9 @@
     <Compile Update="Pages\Food.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\OrderComments.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\RestaurantPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Food.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\OrderComments.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\RestaurantPage.xaml">

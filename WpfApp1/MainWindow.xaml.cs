@@ -545,6 +545,7 @@ namespace UserManagementSystem
             userScore = null;
             isEdited = false;
             AddedTime = DateTime.Now;
+            orderr.comments.Add(this);
             
         }
 
@@ -590,7 +591,7 @@ namespace UserManagementSystem
         {
             RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
             new adm("parsa2", "parsa2", "", "");
-            var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, false, "");
+            var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, true, "");
             Food fd4 = new Food("hh", "jj", "Food", 6, 78);
             Food fd7=new Food("hh", "jj", "Drink", 6, 78);
             Food fd8 = new Food("hh", "jj", "Appetizer", 6, 78);
@@ -657,4 +658,5 @@ namespace UserManagementSystem
             signwind.Show();
         }
     }
+
 }

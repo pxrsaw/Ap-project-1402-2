@@ -332,9 +332,9 @@ namespace UserManagementSystem
         {
             // Get the selected restaurant from the ListView
             Order selectedOrder = (Order)lvOrders.SelectedItem;
-
-            // Navigate to the Restaurant page and bind the selected restaurant
-            //NavigateToRestaurantPage(selectedRestaurant);
+            OrderComments oc1=new OrderComments(selectedOrder,regularUser,this);
+            oc1.Show();
+            
 
         }
         private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -358,6 +358,11 @@ namespace UserManagementSystem
 
         }
 
+        public void Ref4()
+        {
+            
+            lvOrders.Items.Refresh();
+        }
         private void Bronze_Click(object sender, RoutedEventArgs e)
         {
 

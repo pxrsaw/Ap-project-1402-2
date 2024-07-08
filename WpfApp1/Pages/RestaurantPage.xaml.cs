@@ -27,6 +27,12 @@ namespace UserManagementSystem
             restaurant = restaurantt;
             //MessageBox.Show(restaurant.Name);
             InitializeComponent();
+            foreach(var item in restaurant.Menu)
+            {
+                var stackpanel = new StackPanel();
+                stackpanel.Orientation = Orientation.Horizontal;
+                //item.
+            }
         }
 
         private void Reserve_Click(object sender, RoutedEventArgs e)

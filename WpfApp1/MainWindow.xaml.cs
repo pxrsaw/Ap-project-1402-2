@@ -223,7 +223,7 @@ namespace UserManagementSystem
     public class Restaurant : user
     {
         public string Name { get; set; }
-        public Dictionary<string,List<Food>> Menu { get; set; }
+        public List<Food> Menu { get; set; }
         //public List<Food> AvailableFoods;
         public List<Order> orders { get; set; }
         public List<Reserve> reserves { get; set; }
@@ -239,7 +239,7 @@ namespace UserManagementSystem
         public Restaurant(string nm, string username, string password, string email, string phoneNumber,string city, bool idi, bool idl, string addr) : base(username, password, email, phoneNumber)
         {
             Name = nm;
-            Menu = new Dictionary<string, List<Food>>();
+            Menu = new List<Food>();
             //AvailableFoods = new List<Food>();
             reserves = new List<Reserve>();
             orders = new List<Order>();
@@ -291,35 +291,33 @@ namespace UserManagementSystem
             //Menu.Remove(fd3);
             foreach(var mndc in Menu)
             {
-                foreach(var mndc2 in mndc.Value)
+                
+                if (mndc == fd3)
                 {
-                    if(mndc2==fd3)
-                    {
-                        mndc.Value.Remove(fd3);
-                        break;
-                    }
+                    Menu.Remove(fd3);
+                    break;
                 }
             }
         }
         public void AddFood(Food fd3)
         {
-            //Menu.Add(fd3);
-            int ch = 0;
-            foreach(var menurow in Menu)
-            {
-                if(menurow.Key==fd3.Type)
-                {
-                    menurow.Value.Add(fd3);
-                    ch = 1;
-                    break;
-                }
-            }
-            if(ch == 0)
-            {
-                Food[] fcv= new Food[1];
-                fcv[0] = fd3;
-                Menu.Add(fd3.Type, new List<Food>(fcv));
-            }
+            Menu.Add(fd3);
+            //int ch = 0;
+            //foreach(var menurow in Menu)
+            //{
+            //    if(menurow.Key==fd3.Type)
+            //    {
+            //        menurow.Value.Add(fd3);
+            //        ch = 1;
+            //        break;
+            //    }
+            //}
+            //if(ch == 0)
+            //{
+            //    Food[] fcv= new Food[1];
+            //    fcv[0] = fd3;
+            //    Menu.Add(fd3.Type, new List<Food>(fcv));
+            //}
         }
         public void ChangeFood(Food fd3)
         {
@@ -584,11 +582,12 @@ namespace UserManagementSystem
             RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
             new adm("parsa2", "parsa2", "", "");
             var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, false, "");
-            Food fd4 = new Food("hh", "jj", "drink", 6, 78);
+            Food fd4 = new Food("hh", "jj", "Drinks", 6, 78);
+            res1.Menu.Add(fd4);
             FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
-            Food[] fd5 = new Food[1];
-            fd5[0] = fd4;
-            res1.Menu.Add("drink", new List<Food>(fd5));
+            //Food[] fd5 = new Food[1];
+            //fd5[0] = fd4;
+            res1.Menu.Add(fd4);
             InitializeComponent();
         }
 

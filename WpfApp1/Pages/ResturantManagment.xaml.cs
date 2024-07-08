@@ -80,16 +80,16 @@ namespace UserManagementSystem
 
         private void ChangeInventory_Click(object sender, RoutedEventArgs e)
         {
-            List<Food> Menuu = new List<Food>();
-            foreach(var v1 in restaurant.Menu)
-            {
-                foreach(var v2 in v1.Value)
-                {
-                    Menuu.Add(v2);
-                }
-            }
+            //List<Food> Menuu = new List<Food>();
+            //foreach(var v1 in restaurant.Menu)
+            //{
+            //    foreach(var v2 in v1.Value)
+            //    {
+            //        Menuu.Add(v2);
+            //    }
+            //}
 
-            FoodGrid.ItemsSource = (System.Collections.IEnumerable)Menuu;//bejaye in restaurant list food roo bezar.
+            FoodGrid.ItemsSource = (System.Collections.IEnumerable)restaurant.Menu;//bejaye in restaurant list food roo bezar.
             FoodGrid.Visibility = Visibility.Visible;
             txtNumber.Visibility = Visibility.Visible;
         }

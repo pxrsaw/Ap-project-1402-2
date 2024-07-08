@@ -16,16 +16,82 @@
         <Border x:Name="Menu" Background="GhostWhite" Grid.Column="1" Visibility="Visible" Margin="10" BorderThickness="2" BorderBrush="#FF333333">
             <StackPanel>
                 <Label FontSize="20" HorizontalAlignment="Center" FontWeight="Heavy">Menu</Label>
-                <ListView Grid.Row="1" x:Name="ComplaintsListView" Margin="0,20,0,20" Height="270" Width="480">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Foods" DisplayMemberBinding="{Binding Food}" Width="120"/>
-                            <GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
-                            <GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>
-                            <GridViewColumn Header="Drinks" DisplayMemberBinding="{Binding Status}" Width="120"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <StackPanel Orientation="Horizontal">
+
+
+                    <ListView Grid.Row="1" x:Name="ComplaintsListView" Margin="0,20,0,20" Height="270" Width="92" RenderTransformOrigin="-3.244,0.491">
+
+                                <!--<GridView>
+                                    <GridViewColumn Header="Foods" DisplayMemberBinding="{Binding Food}" Width="120" />
+                                    --><!--<GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
+             <GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>
+             <GridViewColumn Header="Drinks" DisplayMemberBinding="{Binding Status}" Width="120"/>--><!--
+                                </GridView>-->
+                           
+                            
+                            
+
+                    </ListView>
+
+                    
+                    
+
+                        <ListView Grid.Row="1" x:Name="ComplaintsListView3" Margin="0,20,0,20" Height="270" Width="95" RenderTransformOrigin="-3.244,0.491">
+
+                            
+                                <!--<GridView>
+                                    <GridViewColumn Width="120" />
+                                    --><!--<GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
+<GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>
+<GridViewColumn Header="Drinks" DisplayMemberBinding="{Binding Status}" Width="120"/>--><!--
+                                </GridView>-->
+                            
+
+
+
+                        </ListView>
+                    <ListView Grid.Row="1" x:Name="ComplaintsListView4" Margin="0,20,0,20" Height="270" Width="91" RenderTransformOrigin="-3.244,0.491">
+
+
+                        <!--<GridView>
+                            <GridViewColumn Header="Foods" Width="120" />
+                            --><!--<GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
+<GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>
+<GridViewColumn Header="Drinks" DisplayMemberBinding="{Binding Status}" Width="120"/>--><!--
+                        </GridView>-->
+
+
+
+
+                    </ListView>
+                    <ListView Grid.Row="1" x:Name="ComplaintsListView5" Margin="0,20,0,20" Height="270" Width="77" RenderTransformOrigin="-3.244,0.491">
+
+
+                        <!--<GridView>
+                            <GridViewColumn Header="Foods" DisplayMemberBinding="{Binding Food}" Width="120" />
+                            --><!--<GridViewColumn Header="Dessert" DisplayMemberBinding="{Binding Dessert}" Width="120" />
+<GridViewColumn Header="Appetizer" DisplayMemberBinding="{Binding Appetizer}" Width="120"/>
+<GridViewColumn Header="Drinks" DisplayMemberBinding="{Binding Status}" Width="120"/>--><!--
+                        </GridView>-->
+
+
+
+
+                    </ListView>
+
+
+                </StackPanel>
+
+                <!--<ScrollViewer>
+                    <StackPanel x:Name="MenuListBox">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="NIce" Margin="10,0,0,0"></TextBlock>
+                            <TextBlock Text="fasfsf" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                </ScrollViewer>-->
                 <Button x:Name="AddToCart" Content="Submit Order" HorizontalAlignment="Center" Width="100" Height="30"/>
             </StackPanel>
         </Border>

@@ -27,6 +27,7 @@
         <TextBox x:Name="PasswordTextBox" Grid.Row="2" Grid.Column="1" Margin="10" FontSize="20"/>
 
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Login" Margin="10" Click="Button_Click"  HorizontalAlignment="Center" Height="40" Width="100" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Sign Up" Margin="140" Click="Button_Click_1" HorizontalAlignment="Center" Width="100" Height="25" FontSize="15"/>
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Sign Up" Margin="50" Click="Button_Click_1" HorizontalAlignment="Center" Width="100" Height="25" FontSize="15"/>
+        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Exit" Click="ExitBut"  HorizontalAlignment="Center" Width="100" Height="25" FontSize="15"/>
     </Grid>
 </Window>

@@ -25,7 +25,7 @@ namespace UserManagementSystem
             //).ToList();
 
             // Update the ListView with filtered restaurants
-            List<Restaurant> filteredRestaurants = new List<Restaurant>(Restaurant.AllRestaurants);
+            List<Restaurant> filteredRestaurants = new List<Restaurant>(user.apdt.AllRestaurants1);
             if (!string.IsNullOrWhiteSpace(txtRestaurantName.Text))
             {
                 filteredRestaurants = RegularUser.SearchByName(filteredRestaurants, txtRestaurantName.Text);
@@ -110,7 +110,7 @@ namespace UserManagementSystem
         }
         public void Refreshh()
         {
-            var unreviewedFeedbacks = adm.AllFeedBacks.Where(x => x.isAnswered == false);
+            var unreviewedFeedbacks =user.apdt.AllFeedBacks1.Where(x => x.isAnswered == false);
 
             UnreviewedFeedbacksGrid.ItemsSource= unreviewedFeedbacks;
         }
@@ -140,7 +140,7 @@ namespace UserManagementSystem
         private void UnreviewedReportsButton_Click(object sender, RoutedEventArgs e)
         {
             //var unreviewedFeedbacks = adm.AllFeedBacks.Where(f => !f.isAnswered).OrderByDescending(f => f.Feedbackuser.AllUserOrders.LastOrDefault()?.orderDate ?? DateTime.MinValue);
-            var unreviewedFeedbacks =adm.AllFeedBacks.Where(x=>x.isAnswered==false);
+            var unreviewedFeedbacks =user.apdt.AllFeedBacks1.Where(x=>x.isAnswered==false);
             UnreviewedFeedbacksGrid.ItemsSource = unreviewedFeedbacks;
             Unreviewed.Visibility = Visibility.Visible;
             restaurant.Visibility= Visibility.Collapsed;
@@ -160,7 +160,7 @@ namespace UserManagementSystem
         }
         private void RespondToComplaintsButton_Click(object sender, RoutedEventArgs e)
         {
-            var unreviewedComplaints = adm.AllFeedBacks.Where(f => !f.isAnswered);
+            var unreviewedComplaints = user.apdt.AllFeedBacks1.Where(f => !f.isAnswered);
             //UnreviewedComplaintsGrid.ItemsSource = unreviewedComplaints;
             SearchReports.Visibility = Visibility.Collapsed;
             restaurant.Visibility = Visibility.Collapsed;
@@ -171,7 +171,7 @@ namespace UserManagementSystem
         }
         private void ViewAllComplaintsButton_Click(object sender, RoutedEventArgs e)
         {
-            AllComplaintsGrid.ItemsSource = adm.AllFeedBacks;
+            AllComplaintsGrid.ItemsSource = user.apdt.AllFeedBacks1;
             SearchReports.Visibility = Visibility.Collapsed;
             restaurant.Visibility = Visibility.Collapsed;
             SearchRes.Visibility = Visibility.Collapsed;
@@ -298,7 +298,7 @@ namespace UserManagementSystem
             //    (string.IsNullOrEmpty(restaurantName) || c.restaurant.Name.Contains(restaurantName)) &&
             //    (reviewedStatus == 0 || (reviewedStatus == 1 && c.isAnswered) || (reviewedStatus == 2 && !c.isAnswered))
             //);
-            var complaints = new List<FeedBack>(adm.AllFeedBacks);
+            var complaints = new List<FeedBack>(user.apdt.AllFeedBacks1);
             if(!string.IsNullOrEmpty(UsernameSearchTextBox.Text))
             {
                 foreach(var item in complaints.ToList())

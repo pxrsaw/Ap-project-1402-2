@@ -5,47 +5,53 @@ using System.Windows.Controls;
 
 namespace UserManagementSystem
 {
-    public static class Files
-    {
-        public static void SaveDataToFile(string fileName, params string[] fields)
-        {
-            //Create a new file or append to an existing file
-                using (StreamWriter writer = File.AppendText(fileName))
-            {
-                // Write the fields to the file, separated by commas
-                writer.Write(string.Join(",", fields));
-            }
-        }
-        public static void SaveInFiles()
-        {
-            foreach (adm a1 in adm.AllAdmins)
-            {
-                SaveDataToFile("Admins.txt", a1.username, a1.password, a1.email, a1.phoneNumber);
-            }
-            foreach (var ru1 in RegularUser.AllRegularUsers)
-            {
-                SaveDataToFile("Users.txt", ru1.username, ru1.password, ru1.firstName, ru1.lastName, ru1.email, ru1.phoneNumber, ru1.userType.ToString(), ru1.AvailableReserves.ToString(),"\n");
-            }
-            foreach (var a1 in Restaurant.AllRestaurants)
-            {
-                SaveDataToFile("Restaurant.txt", a1.username, a1.password, a1.email, a1.phoneNumber);
-            }
-        }
-        public static void File_Delete(string filename, string fields)
-        {
-            if (filename.Contains(fields))
-            {
-                filename.Replace(fields, "");
-            }
-        }
-        public static void File_Edit(string filename, string field1, string field2)
-        {
-            if (filename.Contains(field1))
-            {
-                filename.Replace(field1, field2);
-            }
-        }
-    }
+    //public static class Files
+    //{
+
+    //    public static void SaveDataToFile(string fileName, string contentt)
+    //    {
+    //            using (StreamWriter writer = File.AppendText(fileName))
+    //        {
+    //            writer.Write(contentt);
+    //        }
+    //    }
+    //    public static void SaveInFiles()
+    //    {
+    //        foreach (adm a1 in adm.AllAdmins)
+    //        {
+    //            SaveDataToFile("Admins.txt", $"{a1.username}-{a1.password}-{a1.email}-{a1.phoneNumber}\n");
+    //        }
+    //        foreach (var ru1 in RegularUser.AllRegularUsers)
+    //        {
+    //            SaveDataToFile("Users.txt", $"{ru1.username}-{ru1.password}-{ru1.firstName}-{ru1.lastName}-{ru1.email}-{ru1.phoneNumber}-{ru1.userType.ToString()}\n");
+    //        }
+    //        foreach (var a1 in Restaurant.AllRestaurants)
+    //        {
+    //            SaveDataToFile("Restaurants.txt", $"{a1.username}-{a1.password}-{a1.email}-{a1.phoneNumber}-{a1.Name}-{a1.IsReservable}-{a1.city}-{a1.isDine_in}-{a1.isDelivery}-{a1.address}-{a1.restaurantScore}-{a1.Wallet}\n");
+    //        }
+    //        foreach (var a1 in Restaurant.AllRestaurants)
+    //        {
+    //            foreach(var a2 in a1.orders)
+    //            {
+    //                SaveDataToFile("Orders.txt", $"{a1.username}-{a1.password}-{a1.email}-{a1.phoneNumber}-{a1.Name}-{a1.IsReservable}-{a1.city}-{a1.isDine_in}-{a1.isDelivery}-{a1.address}-{a1.restaurantScore}-{a1.Wallet}\n");
+    //            }
+    //        }
+    //    }
+    //    public static void File_Delete(string filename, string fields)
+    //    {
+    //        if (filename.Contains(fields))
+    //        {
+    //            filename.Replace(fields, "");
+    //        }
+    //    }
+    //    public static void File_Edit(string filename, string field1, string field2)
+    //    {
+    //        if (filename.Contains(field1))
+    //        {
+    //            filename.Replace(field1, field2);
+    //        }
+    //    }
+    //}
     public partial class RestaurantMenuWindow : Window
     {
         Restaurant restaurant;

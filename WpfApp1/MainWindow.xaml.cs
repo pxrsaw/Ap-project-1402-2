@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +27,9 @@ namespace UserManagementSystem
         public string phoneNumber { get; set; }
         public string gender { get; set; }
         public string postalCode { get; set; }
-        public static List<user> AllUsers = new List<user>();
-
+        public static AppData apdt = new AppData();
+         public static List<user> AllUsers = new List<user>();
+        public user() { }
         public user(string username, string password, string email, string phoneNumber)
         {
             this.username = username;
@@ -37,21 +40,21 @@ namespace UserManagementSystem
         }
         public static user Login(string usn, string pw)
         {
-            foreach (adm ad in adm.AllAdmins)
+            foreach (adm ad in user.apdt.AllAdmins1)
             {
                 if (ad.username == usn && ad.password == pw)
                 {
                     return ad;
                 }
             }
-            foreach (RegularUser ad in RegularUser.AllRegularUsers)
+            foreach (RegularUser ad in user.apdt.AllRegularUsers1)
             {
                 if (ad.username == usn && ad.password == pw)
                 {
                     return ad;
                 }
             }
-            foreach (Restaurant ad in Restaurant.AllRestaurants)
+            foreach (Restaurant ad in user.apdt.AllRestaurants1)
             {
                 if (ad.username == usn && ad.password == pw)
                 {
@@ -70,12 +73,13 @@ namespace UserManagementSystem
     }
     public class adm : user
     {
-        public static List<adm> AllAdmins = new List<adm>();
-        public static List<FeedBack> AllFeedBacks= new List<FeedBack>();
+        //public static List<adm> AllAdmins = new List<adm>();
+        //public static List<FeedBack> AllFeedBacks= new List<FeedBack>();
+        public adm() { }
         public adm(string username, string password, string email, string phoneNumber) : base(username, password, email, phoneNumber)
         {
-            AllAdmins.Add(this);
-            AllUsers.Add(this);
+            user.apdt.AllAdmins1.Add(this);
+            user.AllUsers.Add(this);
         }
         //public static adm Sign_Up(string usernamee, string passwordd,string emaill,string pn)
         //{
@@ -94,7 +98,7 @@ namespace UserManagementSystem
     public class RegularUser : user
     {
         
-        public static List<RegularUser> AllRegularUsers = new List<RegularUser>();
+        //public static List<RegularUser> AllRegularUsers = new List<RegularUser>();
         public string firstName { get; set; }
         public string lastName { get; set; }
         public int userType { get; set; }
@@ -106,21 +110,24 @@ namespace UserManagementSystem
         public DateTime? PremiumExpiration { get; set; }
         public Dictionary<Food,float> ScoredFoods { get; set; }
         //public float Wallet;
-        public RegularUser(string fn, string ln,string username, string password, string email, string phoneNumber) : base(username, password, email, phoneNumber)
+        public RegularUser() {
+            
+        }
+        public RegularUser(string firstName, string lastName,string username, string password, string email, string phoneNumber) : base(username, password, email, phoneNumber)
         {
-            firstName= fn;
-            lastName= ln;
+            this.firstName= firstName;
+            this.lastName = lastName;
             AllUserReserves = new List<Reserve>();
             userType = 0;
             PremiumExpiration = null;
-            ActiveReserve = null;
+            
             AvailableReserves = 0;
             AllUserOrders = new List<Order>();
             feedBacks = new List<FeedBack>();
             ScoredFoods= new Dictionary<Food,float>();
             //Wallet = 0;
-            AllRegularUsers.Add(this);
-            AllUsers.Add(this);
+            user.apdt.AllRegularUsers1.Add(this);
+            user.AllUsers.Add(this);
         }
         //func Profile()
         //public static RegularUser Sign_Up(string fn,string ln,string usernamee, string passwordd, string emaill, string pn)
@@ -272,7 +279,7 @@ namespace UserManagementSystem
         public void AddFeedback(Restaurant rs, string ti, string des)
         {
             FeedBack fb = new FeedBack(rs,this, ti, des);
-            adm.AllFeedBacks.Add(fb);
+            user.apdt.AllFeedBacks1.Add(fb);
             //feedBacks.Add(fb);
         }
     }
@@ -281,7 +288,9 @@ namespace UserManagementSystem
         public string Name { get; set; }
         public List<Food> Menu { get; set; }
         //public List<Food> AvailableFoods;
+        
         public List<Order> orders { get; set; }
+        
         public List<Reserve> reserves { get; set; }
         public bool IsReservable { get; set; }
         public string city { get; set; }
@@ -289,25 +298,26 @@ namespace UserManagementSystem
         public bool isDelivery { get; set; }
         public string address { get; set; }
         public float restaurantScore { get; set; }
-        public static List<Restaurant> AllRestaurants = new List<Restaurant>();
+        //public static List<Restaurant> AllRestaurants = new List<Restaurant>();
         public float Wallet { get; set; }
         public List<float> AllScores { get; set; }
         public List<FeedBack> FeedBacks { get; set; }
-        public Restaurant(string nm, string username, string password, string email, string phoneNumber,string city, bool idi, bool idl, string addr) : base(username, password, email, phoneNumber)
+        public Restaurant() { }
+        public Restaurant(string Name, string username, string password, string email, string phoneNumber,string city, bool isDine_in, bool isDelivery, string address) : base(username, password, email, phoneNumber)
         {
-            Name = nm;
+            this.Name = Name;
             Menu = new List<Food>();
             //AvailableFoods = new List<Food>();
             reserves = new List<Reserve>();
             orders = new List<Order>();
             IsReservable = false;
             this.city = city;
-            isDine_in = idi;
-            isDelivery = idl;
-            address = addr;
+            this.isDine_in = isDine_in;
+            this.isDelivery = isDelivery;
+            this.address = address;
             restaurantScore = 0;
-            AllRestaurants.Add(this);
-            AllUsers.Add(this);
+            user.apdt.AllRestaurants1.Add(this);
+            user.AllUsers.Add(this);
             AllScores=new List<float>();
             FeedBacks=new List<FeedBack>();
             Wallet = 0;
@@ -334,7 +344,7 @@ namespace UserManagementSystem
 
         public static Restaurant Sign_Up(string nm,string usernamee, string passwordd, string emaill, string pn,string cty,bool idii,bool idll,string addrr)
         {
-            foreach (user u1 in AllUsers)
+            foreach (user u1 in user.AllUsers)
             {
                 if (u1.username == usernamee || u1.phoneNumber == pn)
                 {
@@ -398,20 +408,22 @@ namespace UserManagementSystem
         public DateTime orderDate { get; set; }
         public List<Comment> comments { get; set; }
         public bool IsCash { get; set; }
-        public Order(RegularUser rus, Restaurant res, Dictionary<Food,int> orderFoods, bool isCash)
+        public Order() { }
+        public Order(RegularUser rus, Restaurant res, Dictionary<Food,int> orderFoods, bool IsCash)
         {
             this.rus = rus;
             this.res = res;
             this.orderFoods = orderFoods;
             comments = new List<Comment>();
             orderDate = DateTime.Now;
-            IsCash = isCash;
+            this.IsCash = IsCash;
             Price = 0;
             foreach(var row in orderFoods)
             {
                 Price += ((row.Key.Price)*(row.Value));
             }
             res.Wallet += Price;
+            user.apdt.AllOrders1.Add(this);
             //rus.Wallet-=Price;
         }
         public void AddScore(float f2)
@@ -431,12 +443,14 @@ namespace UserManagementSystem
         public Restaurant res { get; set; }
         public float? Score { get; set; }
         public DateTime reserveDate { get; set; }
+        public Reserve() { }
         public Reserve(RegularUser rus, Restaurant res,DateTime reserveDate)
         {
             this.rus = rus;
             this.res = res;
             Score = null;
             this.reserveDate = reserveDate;
+            user.apdt.AllResrves.Add(this);
         }
         public string AddReserve(RegularUser rus, Restaurant res, DateTime reserveDate)
         {
@@ -544,16 +558,18 @@ namespace UserManagementSystem
             float sum = Prices.Sum(r => r);
             Score = sum / Prices.Count;
         }
-        public Food(string name, string materials, string type, int inventory,float price)
+        public Food() { }
+        public Food(string Name, string Materials, string Type, int Inventory,float Price)
         {
-            Name = name;
-            Materials = materials;
-            Type = type;
+            this.Name = Name;
+            this.Materials = Materials;
+            this.Type = Type;
             Score = 0;
             Comments = new List<Comment>();
-            Inventory = inventory;
-            Price = price;
+            this.Inventory = Inventory;
+            this.Price = Price;
             Prices=new List<float>();
+            user.apdt.AllFoods1.Add(this);
         }
         public void AddComment(string cm,RegularUser ru1,float user_score)
         {
@@ -581,29 +597,32 @@ namespace UserManagementSystem
         public bool isEdited { get; set; }
         public DateTime AddedTime { get; set; }
         public List<string> answerComments { get; set; }
-        public Comment(string cm, RegularUser ru, Food fdd, float? us)
+        public Comment() { }
+        public Comment(string cm, RegularUser ru, Food fd, float? userScore)
         {
             this.cm = cm;
             this.ru = ru;
-            fd = fdd;
+            this.fd = fd;
             ordercm = null;
-            userScore = us;
+            this.userScore = userScore;
             isEdited = false;
             AddedTime=DateTime.Now;
             answerComments = new List<string>();
-            fdd.Comments.Add(this);
+            fd.Comments.Add(this);
+            user.apdt.AllComments.Add(this);
         }
-        public Comment(string cm, RegularUser ru, Order orderr)
+        public Comment(string cm, RegularUser ru, Order ordercm)
         {
             this.cm = cm;
             this.ru = ru;
             fd = null;
-            ordercm = orderr;
+            this.ordercm = ordercm;
             userScore = null;
             isEdited = false;
             AddedTime = DateTime.Now;
-            orderr.comments.Add(this);
-            
+            ordercm.comments.Add(this);
+            user.apdt.AllComments.Add(this);
+
         }
 
         public void EditComment(string newcm)
@@ -626,18 +645,19 @@ namespace UserManagementSystem
         public string description { get; set; }
         public bool isAnswered { get; set; }
         public string? answer { get; set; }
-        public FeedBack(Restaurant restaurant,RegularUser regular, string title, string description)
+        public FeedBack() { }
+        public FeedBack(Restaurant restaurant,RegularUser Feedbackuser, string title, string description)
         {
             this.restaurant = restaurant;
-            this.Feedbackuser = regular;
+            this.Feedbackuser =Feedbackuser ;
             user_Name =$"{Feedbackuser.firstName} {Feedbackuser.lastName}";
             this.title = title;
             this.description = description;
             isAnswered= false;
             answer=null;
             
-            regular.feedBacks.Add(this);
-            adm.AllFeedBacks.Add(this);
+            Feedbackuser.feedBacks.Add(this);
+            user.apdt.AllFeedBacks1.Add(this);
             restaurant.FeedBacks.Add(this);
         }
         public void answerFeedback(string feedback) 
@@ -646,33 +666,101 @@ namespace UserManagementSystem
             answer = feedback;
         }
     }
-    public partial class MainWindow : Window
+    public class AppData
     {
-        public MainWindow()
+        //public List<user> AllUsers1 { get; set; } = new List<user>();
+        public List<adm> AllAdmins1 { get; set; } = new List<adm>();
+        public List<Restaurant> AllRestaurants1 { get; set; } = new List<Restaurant>();
+        public List<RegularUser> AllRegularUsers1 { get; set; } = new List<RegularUser>();
+      
+        
+        public List<Order> AllOrders1 { get; set; }=new List<Order>();
+        public List<Reserve> AllResrves {  get; set; }=new List<Reserve>();
+        public List<Food> AllFoods1 { get; set; } = new List<Food>();
+
+        public List<Comment> AllComments { get; set; }=new List<Comment>();
+        public List<FeedBack> AllFeedBacks1 { get; set; } = new List<FeedBack>();
+
+
+        public void SaveInFile()
         {
-            RegularUser ru1 = new RegularUser("ggh", "uu", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
-            new adm("parsa2", "parsa2", "igg", "gjjgcv");
-            new adm("hhh", "ffd", "ygf", "ffss");
+            //AllAdmins1 = adm.AllAdmins;
+            //AllRestaurants1 = Restaurant.AllRestaurants;
+            //AllRegularUsers1 = RegularUser.AllRegularUsers;
+            //AllFeedBacks1 = adm.AllFeedBacks;
+            //AllUsers1 = user.AllUsers;
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve,
+                PropertyNamingPolicy=JsonNamingPolicy.CamelCase,
+                //IncludeFields=true,
 
-            //File.WriteAllText("Users.txt","");
-            Files.SaveInFiles();
-            var res1 = new Restaurant("hello1", "res1", "res1","lk" , "tf", "tehran", false, true, "kkkkh");
-            Food fd4 = new Food("hh", "jj", "Food", 6, 78);
-            Food fd7=new Food("hh", "jj", "Drink", 6, 78);
-            Food fd8 = new Food("hh", "jj", "Appetizer", 6, 78);
-            Food fd9 = new Food("hh", "jj", "Dessert", 6, 78);
+            };
+            string json = JsonSerializer.Serialize(this,options);
+            File.WriteAllText("AppDataa.json", json);
+        }
+        public static void LoadFromFile()
+        {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+               // IncludeFields = true
 
-            res1.Menu.Add(fd4);
-            res1.Menu.Add(fd7);
-            res1.Menu.Add(fd8);
-            res1.Menu.Add(fd9);
-            FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
-            //Food[] fd5 = new Food[1];
-            //fd5[0] = fd4;
-            //res1.Menu.Add(fd4);
-            InitializeComponent();
+            };
+            user.apdt = JsonSerializer.Deserialize<AppData>(File.ReadAllText("AppDataa.json"),options) ?? new AppData();
+            //adm.AllAdmins = ad1.AllAdmins1;
+            //Restaurant.AllRestaurants = ad1.AllRestaurants1;
+            //RegularUser.AllRegularUsers = ad1.AllRegularUsers1;
+            //adm.AllFeedBacks = ad1.AllFeedBacks1;
+            //user.AllUsers = ad1.AllUsers1;
         }
 
+    }
+    public partial class MainWindow : Window
+    {
+        public static bool b1 = false;
+        public MainWindow()
+        {
+            //RegularUser ru1 = new RegularUser("ggh", "uu", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
+            //new adm("parsa2", "parsa2", "igg", "gjjgcv");
+            //new adm("hhh", "ffd", "ygf", "ffss");
+
+            //File.WriteAllText("Users.txt", "");
+
+            //var res1 = new Restaurant("hello1", "res1", "res1", "lk", "tf", "tehran", false, true, "kkkkh");
+            //Food fd4 = new Food("hh", "jj", "Food", 6, 78);
+            //Food fd7 = new Food("hh", "jj", "Drink", 6, 78);
+            //Food fd8 = new Food("hh", "jj", "Appetizer", 6, 78);
+            //Food fd9 = new Food("hh", "jj", "Dessert", 6, 78);
+
+            //res1.Menu.Add(fd4);
+            //res1.Menu.Add(fd7);
+            //res1.Menu.Add(fd8);
+            //res1.Menu.Add(fd9);
+            //FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
+
+            //Files.SaveInFiles();
+            //AppData appData = new AppData();
+            //string json=JsonSerializer.Serialize(appData);
+            //File.WriteAllText("AppDataa.")
+            //AppData appData = new AppData();
+           // user.apdt.SaveInFile();
+           if(b1==false)
+            {
+                AppData.LoadFromFile();
+                b1 = true;
+            }
+            //MessageBox.Show(user.apdt.AllAdmins1.Count.ToString());
+            InitializeComponent();
+        }
+        public void ExitBut(object sender, RoutedEventArgs e)
+        {
+            user.apdt.SaveInFile();
+            Close();
+        }
         
 
         public void Button_Click(object sender, RoutedEventArgs e)
@@ -688,7 +776,8 @@ namespace UserManagementSystem
             
             string UserName_ = UsernameTextBox.Text;
             string Password_ = PasswordTextBox.Text;
-            var us1=user.Login(UserName_, Password_);
+
+            var us1 =user.Login(UserName_, Password_);
             if (us1 is RegularUser)
             {
                 RegularUser ru2 = us1 as RegularUser;

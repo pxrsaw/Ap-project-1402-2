@@ -397,3 +397,17 @@ C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food3.baml
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.baml
 C:\Users\User\Desktop\test23\test18\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\OrderComments.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\AnswerPage.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\ChangeInventory.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food3.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\FoodComment.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\OrderComments.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.g.cs
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\AnswerPage.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\ChangeInventory.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\Food3.baml
+C:\Users\User\Desktop\test8\WpfApp1\obj\Debug\net8.0-windows\Pages\RestaurantPage.baml

@@ -1,0 +1,228 @@
+{
+  "$id": "1",
+  "allAdmins1": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "username": "parsa2",
+        "password": "parsa2",
+        "email": "igg",
+        "phoneNumber": "gjjgcv",
+        "gender": null,
+        "postalCode": null
+      },
+      {
+        "$id": "4",
+        "username": "hhh",
+        "password": "ffd",
+        "email": "ygf",
+        "phoneNumber": "ffss",
+        "gender": null,
+        "postalCode": null
+      }
+    ]
+  },
+  "allRestaurants1": {
+    "$id": "5",
+    "$values": [
+      {
+        "$id": "6",
+        "name": "hello1",
+        "menu": {
+          "$id": "7",
+          "$values": [
+            {
+              "$id": "8",
+              "name": "hh",
+              "materials": "jj",
+              "type": "Food",
+              "score": 0,
+              "inventory": 6,
+              "price": 78,
+              "comments": {
+                "$id": "9",
+                "$values": []
+              },
+              "prices": {
+                "$id": "10",
+                "$values": []
+              }
+            },
+            {
+              "$id": "11",
+              "name": "hh",
+              "materials": "jj",
+              "type": "Drink",
+              "score": 0,
+              "inventory": 6,
+              "price": 78,
+              "comments": {
+                "$id": "12",
+                "$values": []
+              },
+              "prices": {
+                "$id": "13",
+                "$values": []
+              }
+            },
+            {
+              "$id": "14",
+              "name": "hh",
+              "materials": "jj",
+              "type": "Appetizer",
+              "score": 0,
+              "inventory": 6,
+              "price": 78,
+              "comments": {
+                "$id": "15",
+                "$values": []
+              },
+              "prices": {
+                "$id": "16",
+                "$values": []
+              }
+            },
+            {
+              "$id": "17",
+              "name": "hh",
+              "materials": "jj",
+              "type": "Dessert",
+              "score": 0,
+              "inventory": 6,
+              "price": 78,
+              "comments": {
+                "$id": "18",
+                "$values": []
+              },
+              "prices": {
+                "$id": "19",
+                "$values": []
+              }
+            }
+          ]
+        },
+        "orders": {
+          "$id": "20",
+          "$values": []
+        },
+        "reserves": {
+          "$id": "21",
+          "$values": []
+        },
+        "isReservable": false,
+        "city": "tehran",
+        "isDine_in": false,
+        "isDelivery": true,
+        "address": "kkkkh",
+        "restaurantScore": 0,
+        "wallet": 0,
+        "allScores": {
+          "$id": "22",
+          "$values": []
+        },
+        "feedBacks": {
+          "$id": "23",
+          "$values": [
+            {
+              "$id": "24",
+              "restaurant": {
+                "$ref": "6"
+              },
+              "feedbackuser": {
+                "$id": "25",
+                "firstName": "ggh",
+                "lastName": "uu",
+                "userType": 0,
+                "availableReserves": 0,
+                "allUserOrders": {
+                  "$id": "26",
+                  "$values": []
+                },
+                "allUserReserves": {
+                  "$id": "27",
+                  "$values": []
+                },
+                "activeReserve": null,
+                "feedBacks": {
+                  "$id": "28",
+                  "$values": [
+                    {
+                      "$ref": "24"
+                    }
+                  ]
+                },
+                "premiumExpiration": null,
+                "scoredFoods": {
+                  "$id": "29"
+                },
+                "username": "parsa",
+                "password": "parsa",
+                "email": "pxrsaaw@gmail.com",
+                "phoneNumber": "09",
+                "gender": null,
+                "postalCode": null
+              },
+              "user_Name": "ggh uu",
+              "title": "razi",
+              "description": "nmd",
+              "isAnswered": false,
+              "answer": null
+            }
+          ]
+        },
+        "username": "res1",
+        "password": "res1",
+        "email": "lk",
+        "phoneNumber": "tf",
+        "gender": null,
+        "postalCode": null
+      }
+    ]
+  },
+  "allRegularUsers1": {
+    "$id": "30",
+    "$values": [
+      {
+        "$ref": "25"
+      }
+    ]
+  },
+  "allOrders1": {
+    "$id": "31",
+    "$values": []
+  },
+  "allResrves": {
+    "$id": "32",
+    "$values": []
+  },
+  "allFoods1": {
+    "$id": "33",
+    "$values": [
+      {
+        "$ref": "8"
+      },
+      {
+        "$ref": "11"
+      },
+      {
+        "$ref": "14"
+      },
+      {
+        "$ref": "17"
+      }
+    ]
+  },
+  "allComments": {
+    "$id": "34",
+    "$values": []
+  },
+  "allFeedBacks1": {
+    "$id": "35",
+    "$values": [
+      {
+        "$ref": "24"
+      }
+    ]
+  }
+}

@@ -27,7 +27,7 @@ namespace UserManagementSystem
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
+            string[] Names = user.apdt.AllRestaurants1.Select(r => r.Name).ToArray();
             ComboRes.ItemsSource = Names;
             Profile.Visibility = Visibility.Visible;
             nametxt.Visibility = Visibility.Visible;
@@ -212,7 +212,7 @@ namespace UserManagementSystem
             //).ToList();
 
             // Update the ListView with filtered restaurants
-            List<Restaurant> filteredRestaurants=new List<Restaurant>(Restaurant.AllRestaurants);
+            List<Restaurant> filteredRestaurants=new List<Restaurant>(user.apdt.AllRestaurants1);
             if(!string.IsNullOrWhiteSpace(txtRestaurantName.Text))
             {
                 filteredRestaurants = RegularUser.SearchByName(filteredRestaurants, txtRestaurantName.Text);
@@ -276,7 +276,7 @@ namespace UserManagementSystem
             ComplaintsListView.Visibility = Visibility.Collapsed;
             Label.Visibility = Visibility.Collapsed;
 
-            string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
+            string[] Names = user.apdt.AllRestaurants1.Select(r => r.Name).ToArray();
             RestaurantComboBox.ItemsSource = Names;
         }
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -288,7 +288,7 @@ namespace UserManagementSystem
         private void SubmitComplaintButton_Click(object sender, RoutedEventArgs e)
         {
             Restaurant Res = null;
-            foreach(var RES in Restaurant.AllRestaurants)
+            foreach(var RES in user.apdt.AllRestaurants1)
             {
                 if (RES.Name == RestaurantComboBox.SelectedItem.ToString())
                 {

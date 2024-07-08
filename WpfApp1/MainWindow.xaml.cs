@@ -17,12 +17,12 @@ namespace UserManagementSystem
 {
     public class user
     {
-        public string username;
-        public string password;
-        public string email;
-        public string phoneNumber;
-        public string? gender;
-        public string? postalCode;
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
+        public string phoneNumber { get; set; }
+        public string? gender { get; set; }
+        public string? postalCode { get; set; }
         public static List<user> AllUsers = new List<user>();
 
         public user(string username, string password, string email, string phoneNumber)
@@ -93,15 +93,15 @@ namespace UserManagementSystem
     {
         
         public static List<RegularUser> AllRegularUsers = new List<RegularUser>();
-        public string firstName;
-        public string lastName;
-        public int userType;
-        public int AvailableReserves;
-        public List<Order> AllUserOrders;
-        public List<Reserve> AllUserReserves;
-        public Reserve ActiveReserve;
-        public List<FeedBack> feedBacks;
-        public DateTime? PremiumExpiration;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public int userType { get; set; }
+        public int AvailableReserves { get; set; }
+        public List<Order> AllUserOrders { get; set; }
+        public List<Reserve> AllUserReserves { get; set; }
+        public Reserve ActiveReserve { get; set; }
+        public List<FeedBack> feedBacks { get; set; }
+        public DateTime? PremiumExpiration { get; set; }
         //public float Wallet;
         public RegularUser(string fn, string ln,string username, string password, string email, string phoneNumber) : base(username, password, email, phoneNumber)
         {
@@ -222,20 +222,20 @@ namespace UserManagementSystem
     }
     public class Restaurant : user
     {
-        public string Name;
-        public Dictionary<string,List<Food>> Menu;
+        public string Name { get; set; }
+        public Dictionary<string,List<Food>> Menu { get; set; }
         //public List<Food> AvailableFoods;
-        public List<Order> orders;
-        public List<Reserve> reserves;
-        public bool IsReservable;
-        public string city;
-        public bool isDine_in;
-        public bool isDelivery;
-        public string address;
-        public float restaurantScore;
+        public List<Order> orders { get; set; }
+        public List<Reserve> reserves { get; set; }
+        public bool IsReservable { get; set; }
+        public string city { get; set; }
+        public bool isDine_in { get; set; }
+        public bool isDelivery { get; set; }
+        public string address { get; set; }
+        public float restaurantScore { get; set; }
         public static List<Restaurant> AllRestaurants = new List<Restaurant>();
-        public float Wallet;
-        public List<float> AllScores;
+        public float Wallet { get; set; }
+        public List<float> AllScores { get; set; }
         public Restaurant(string nm, string username, string password, string email, string phoneNumber,string city, bool idi, bool idl, string addr) : base(username, password, email, phoneNumber)
         {
             Name = nm;
@@ -334,14 +334,14 @@ namespace UserManagementSystem
     
     public class Order
     {
-        public RegularUser rus;
-        public Restaurant res;
-        public List<Food> orderFoods;
-        public float Price;
-        public float? Score;
-        public DateTime orderDate;
-        public List<Comment> comments;
-        public bool IsCash;
+        public RegularUser rus { get; set; }
+        public Restaurant res { get; set; }
+        public List<Food> orderFoods { get; set; }
+        public float Price { get; set; }
+        public float? Score { get; set; }
+        public DateTime orderDate { get; set; }
+        public List<Comment> comments { get; set; }
+        public bool IsCash { get; set; }
         public Order(RegularUser rus, Restaurant res, List<Food> orderFoods, bool isCash)
         {
             this.rus = rus;
@@ -371,10 +371,10 @@ namespace UserManagementSystem
     }
     public class Reserve
     {
-        public RegularUser rus;
-        public Restaurant res;
-        public float? Score;
-        public DateTime reserveDate;
+        public RegularUser rus { get; set; }
+        public Restaurant res { get; set; }
+        public float? Score { get; set; }
+        public DateTime reserveDate { get; set; }
         public Reserve(RegularUser rus, Restaurant res,DateTime reserveDate)
         {
             this.rus = rus;
@@ -473,14 +473,14 @@ namespace UserManagementSystem
     }
     public class Food
     {
-        public string Name;
-        public string Materials;
-        public string Type;
+        public string Name { get; set; }
+        public string Materials { get; set; }
+        public string Type { get; set; }
         //inja-image
-        public float Score;
-        public int Inventory;
-        public float Price;
-        public List<Comment> Comments;
+        public float Score { get; set; }
+        public int Inventory { get; set; }
+        public float Price { get; set; }
+        public List<Comment> Comments { get; set; }
         public Food(string name, string materials, string type, int inventory,float price)
         {
             Name = name;
@@ -509,14 +509,14 @@ namespace UserManagementSystem
     }
     public class Comment
     {
-        public string cm;
-        public RegularUser ru;
-        public Food fd;
-        public Order ordercm;
-        public float? userScore;
-        public bool isEdited;
-        public DateTime AddedTime;
-        public List<Comment> answerComments;
+        public string cm { get; set; }
+        public RegularUser ru { get; set; }
+        public Food fd { get; set; }
+        public Order ordercm { get; set; }
+        public float? userScore { get; set; }
+        public bool isEdited { get; set; }
+        public DateTime AddedTime { get; set; }
+        public List<Comment> answerComments { get; set; }
         public Comment(string cm, RegularUser ru, Food fdd, float us)
         {
             this.cm = cm;

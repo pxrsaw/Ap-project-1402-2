@@ -43,7 +43,7 @@ namespace UserManagementSystem
 
         private void FeedbacksButton_Click(object sender, RoutedEventArgs e)
         {
-            FeedbacksDataGrid.ItemsSource = regularUser.feedBacks;
+            ComplaintsListView.ItemsSource = regularUser.feedBacks;
             Profile.Visibility = Visibility.Collapsed;
             Search.Visibility = Visibility.Collapsed;
             Order.Visibility = Visibility.Collapsed;
@@ -56,7 +56,7 @@ namespace UserManagementSystem
             //InformationDataGrid.ItemsSource = (System.Collections.IEnumerable)regularUser;
             //Make the DataGrid visible
             //InformationDataGrid.Visibility = Visibility.Visible;
-            
+
         }
 
         private void EditDataButton_Click(object sender, RoutedEventArgs e)
@@ -87,29 +87,48 @@ namespace UserManagementSystem
             // Update the ListView with filtered restaurants
             lvRestaurants.ItemsSource = filteredRestaurants;
         }
-        private void NewFeedbackButton_Click(object sender, RoutedEventArgs e)
+        private void RefreshComplaints()
         {
-            Restaurant res = null;
-            foreach (Restaurant restaurant in Restaurant.AllRestaurants)
-            {
-                if (restaurant.Name.Equals(Name.Text))
-                {
-                    res = restaurant;
-                    break;
-                }
-            }
-            // generate a new feedback
-            FeedBack newFeedbackWindow = new FeedBack(res,regularUser, Title.Text, Description.Text);
-            //regularUser.feedBacks.Add(newFeedbackWindow);
-
-            // Refresh the feedbacks data grid
-            FeedbacksDataGrid.ItemsSource = regularUser.feedBacks;
+            ComplaintsListView.ItemsSource = regularUser.feedBacks;
+            ComplaintsListView.Items.Refresh();
         }
 
-        private void FeedbacksDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void NewComplaintButton_Click(object sender, RoutedEventArgs e)
         {
-            FeedbacksDataGrid.SelectedItem = regularUser.feedBacks;
+            NewComplaintPanel.Visibility = Visibility.Visible;
+            NewComplaintButton.Visibility = Visibility.Collapsed;
+            RefreshButton.Visibility = Visibility.Collapsed;
+            ComplaintsListView.Visibility = Visibility.Collapsed;
+            Label.Visibility = Visibility.Collapsed;
+            RestaurantComboBox.ItemsSource = Restaurant.AllRestaurants;
         }
+
+        private void SubmitComplaintButton_Click(object sender, RoutedEventArgs e)
+        {
+            Restaurant selectedRestaurant = (Restaurant)RestaurantComboBox.SelectedItem;
+            string title = TitleTextBox.Text;
+            string description = DescriptionTextBox.Text;
+
+            FeedBack newFeedBack = new FeedBack(selectedRestaurant, regularUser, title, description);
+            regularUser.feedBacks.Add(newFeedBack);
+
+            RefreshComplaints();
+            TitleTextBox.Clear();
+            DescriptionTextBox.Clear();
+            NewComplaintPanel.Visibility = Visibility.Collapsed;
+
+            NewComplaintPanel.Visibility = Visibility.Collapsed;
+            NewComplaintButton.Visibility = Visibility.Visible;
+            RefreshButton.Visibility = Visibility.Visible;
+            ComplaintsListView.Visibility = Visibility.Visible;
+            Label.Visibility = Visibility.Visible;
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshComplaints();
+        }
+
         private void lvOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lvOrders.SelectedItem = regularUser.AllUserOrders;

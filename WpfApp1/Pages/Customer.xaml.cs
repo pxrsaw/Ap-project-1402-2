@@ -233,10 +233,10 @@ namespace UserManagementSystem
         private void NavigateToRestaurantPage(Restaurant restaurant)
         {
             // Create a new instance of the Restaurant page and pass the selected restaurant
-            UserManagementSystem.RestaurantPage restaurantPage = new UserManagementSystem.RestaurantPage(restaurant);
+            UserManagementSystem.RestaurantPage restaurantPage = new UserManagementSystem.RestaurantPage(restaurant,regularUser);
             //MessageBox.Show("hi");
             restaurantPage.Show();
-            RestaurantPage.OrderDic = new Dictionary<int, Food>();
+            RestaurantPage.OrderDic.Clear();
         }
         private void Silver_Click(object sender, RoutedEventArgs e)
         {

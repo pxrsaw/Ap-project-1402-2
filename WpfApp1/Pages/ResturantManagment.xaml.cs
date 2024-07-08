@@ -77,7 +77,7 @@ namespace UserManagementSystem
             FoodDataGrid.ItemsSource = (System.Collections.IEnumerable)restaurant;//bejaye in restaurant list food roo bezar.
             FoodDataGrid.Visibility = Visibility.Visible;
         }
-
+        
         private void ChangeInventory_Click(object sender, RoutedEventArgs e)
         {
             //List<Food> Menuu = new List<Food>();

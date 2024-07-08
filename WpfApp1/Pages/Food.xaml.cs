@@ -21,10 +21,12 @@ namespace UserManagementSystem
     {
         private Food food1;
         private Restaurant rs4;
-        public Food2(Food food,Restaurant r1)
+        private RegularUser ru12;
+        public Food2(Food food,Restaurant r1,RegularUser ru11)
         {
            
             InitializeComponent();
+            ru12 = ru11;
             food1 = food;
             rs4 = r1;
             nametxt.Text= $"Name: {food1.Name}";
@@ -53,7 +55,7 @@ namespace UserManagementSystem
                 return;
             }
             food1.Inventory -= numbb;
-            var rs = new RestaurantPage(rs4);
+            var rs = new RestaurantPage(rs4,numbb,food1,ru12);
             Close();
 
         }

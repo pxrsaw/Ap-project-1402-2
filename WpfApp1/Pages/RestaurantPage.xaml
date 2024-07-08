@@ -108,7 +108,9 @@
                     </StackPanel>
                     
                 </ScrollViewer>-->
-                <Button x:Name="AddToCart" Content="Submit Order" HorizontalAlignment="Center" Width="100" Height="30"/>
+                <!--<CheckBox Content="Pay Online"-->
+                <CheckBox Content="Pay Online" HorizontalAlignment="Left" Checked="OnlCheck" FontSize="10" ></CheckBox>
+                <Button Click="AddToCart" Content="Submit Order" HorizontalAlignment="Center" Width="100" Height="30"/>
             </StackPanel>
         </Border>
         <Border Grid.Column="0" BorderThickness="2" BorderBrush="#FF333333" Margin="10">

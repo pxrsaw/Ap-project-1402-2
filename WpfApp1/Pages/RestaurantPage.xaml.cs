@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,14 +24,18 @@ namespace UserManagementSystem
     public partial class RestaurantPage : Window
     {
         private Restaurant restaurant;
+        private RegularUser ru10;
         List<Food> AllFoods = new List<Food>();
         List<Food> AllDrinks = new List<Food>();
         List<Food> AllAppetizers = new List<Food>();
         List<Food> AllDesserts = new List<Food>();
-        public static Dictionary<int,Food> OrderDic= new Dictionary<int,Food>();
-        public RestaurantPage(Restaurant restaurantt)
+        public bool isOnline = false;
+        public static Dictionary<Food,int> OrderDic= new Dictionary<Food,int>();
+       // public RegularUser ru8;
+        public RestaurantPage(Restaurant restaurantt,RegularUser ru9)
         {
             restaurant = restaurantt;
+            ru10 = ru9;
             //MessageBox.Show(restaurant.Name);
             InitializeComponent();
 
@@ -65,10 +71,11 @@ namespace UserManagementSystem
             ComplaintsListView5.ItemsSource = AllDesserts;
 
         }
-        public RestaurantPage(Restaurant restaurantt,int numbb,Food fdd)
+        public RestaurantPage(Restaurant restaurantt,int numbb,Food fdd, RegularUser ru9)
         {
             restaurant = restaurantt;
-            OrderDic.Add(numbb, fdd);
+            ru10 = ru9;
+            OrderDic.Add(fdd,numbb);
             //MessageBox.Show(restaurant.Name);
             InitializeComponent();
             
@@ -129,7 +136,7 @@ namespace UserManagementSystem
             //int i4=AllDesserts.Count;
             Food selectedFood = AllFoods[ComplaintsListView.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood,restaurant);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood,restaurant,ru10);
 
             Selectedfood.Show();
             Close();
@@ -141,7 +148,7 @@ namespace UserManagementSystem
             //MessageBox.Show("hi");
             Food selectedFood = AllDrinks[ComplaintsListView3.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant,ru10);
 
             Selectedfood.Show();
             Close();
@@ -152,10 +159,14 @@ namespace UserManagementSystem
             //int i=AllFoods.Count;
             Food selectedFood = AllAppetizers[ComplaintsListView4.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant, ru10);
 
             Selectedfood.Show();
             Close();
+        }
+        public void OnlCheck(object sender, RoutedEventArgs e)
+        {
+            isOnline = true;
         }
         private void ComplaintsListView5_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -163,10 +174,49 @@ namespace UserManagementSystem
             //int i=AllFoods.Count;
             Food selectedFood = AllDesserts[ComplaintsListView5.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant, ru10);
 
             Selectedfood.Show();
             Close();
+        }
+        private void AddToCart(object sender, RoutedEventArgs e)
+        {
+            string? sOrder=null;
+            double pricee=0;
+            foreach(var v2 in OrderDic)
+            {
+                sOrder += $"{v2.Key.Name}:   {v2.Value}\n";
+                pricee += (v2.Value * (v2.Key.Price));
+
+            }
+            OrderDic.Clear();
+            sOrder += $"Sum Price: {pricee}";
+            MessageBox.Show(sOrder);
+            if(isOnline)
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("restaurant.managementpx@gmail.com");
+                    mail.To.Add(ru10.email);
+                    mail.Subject = "your order reciept";
+                    sOrder += $"\nrestaurant: {restaurant.Name}";
+                    mail.Body = sOrder;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials = new NetworkCredential("restaurant.managementpx@gmail.com", "jrgf purp tskt zzwg");
+                    smtp.Send(mail);
+                }
+                catch
+                {
+                    MessageBox.Show("could not send email");
+                }
+            }
+            //var cst=new Customer()
+
         }
 
     }

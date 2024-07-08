@@ -579,7 +579,7 @@ namespace UserManagementSystem
     {
         public MainWindow()
         {
-            RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
+            RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "pxrsaaw@gmail.com", "09");
             new adm("parsa2", "parsa2", "", "");
             var res1 = new Restaurant("hello1", "res1", "res1", "", "", "tehran", false, false, "");
             Food fd4 = new Food("hh", "jj", "Food", 6, 78);

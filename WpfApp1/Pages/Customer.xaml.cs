@@ -328,6 +328,15 @@ namespace UserManagementSystem
         {
 
         }
+        private void mdcOrders(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected restaurant from the ListView
+            Order selectedOrder = (Order)lvOrders.SelectedItem;
+
+            // Navigate to the Restaurant page and bind the selected restaurant
+            //NavigateToRestaurantPage(selectedRestaurant);
+
+        }
         private void lvRestaurants_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Get the selected restaurant from the ListView

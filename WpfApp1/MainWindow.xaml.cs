@@ -577,7 +577,6 @@ namespace UserManagementSystem
             this.Feedbackuser = regular;
             regular.feedBacks.Add(this);
             adm.AllFeedBacks.Add(this);
-            
         }
         public void answerFeedback(string feedback) 
         {

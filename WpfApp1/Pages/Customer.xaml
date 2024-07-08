@@ -122,13 +122,13 @@
         </Border>
         <Border BorderBrush="#FF333333" Name="Order" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
             <Grid>
-                <ListView x:Name="lvOrders">
+                <ListView x:Name="lvOrders" MouseDoubleClick="mdcOrders">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Order Date" DisplayMemberBinding="{Binding orderDate, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" />
                             <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding res.Name}" />
                             <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Price}" />
-                            <GridViewColumn Header="Payment" DisplayMemberBinding="{Binding IsCash}" />
+                            <GridViewColumn Header="Is Cash" DisplayMemberBinding="{Binding IsCash}" />
                             <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                         </GridView>
                     </ListView.View>
@@ -148,11 +148,11 @@
                 <ListView Grid.Row="1" x:Name="ComplaintsListView" Margin="0,20,0,20">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding Restaurant.Name}" />
-                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
-                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
-                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" />
-                            <GridViewColumn Header="Admin Response" DisplayMemberBinding="{Binding AdminResponse}" />
+                            <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding restaurant.Name}" />
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding title}" />
+                            <GridViewColumn Header="Description" DisplayMemberBinding="{Binding description}" />
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding isAnswered}" />
+                            <GridViewColumn Header="Admin Response" DisplayMemberBinding="{Binding answer}" />
                         </GridView>
                     </ListView.View>
                 </ListView>

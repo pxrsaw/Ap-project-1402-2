@@ -58,6 +58,7 @@ namespace UserManagementSystem
             {
                 new RestaurantPage(rs4,ru12);
                 Close();
+                return;
             }
             if(numbb>food1.Inventory)
             {

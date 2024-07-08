@@ -524,7 +524,7 @@ namespace UserManagementSystem
         public float? userScore { get; set; }
         public bool isEdited { get; set; }
         public DateTime AddedTime { get; set; }
-        public List<Comment> answerComments { get; set; }
+        public List<string> answerComments { get; set; }
         public Comment(string cm, RegularUser ru, Food fdd, float us)
         {
             this.cm = cm;
@@ -534,7 +534,7 @@ namespace UserManagementSystem
             userScore = us;
             isEdited = false;
             AddedTime=DateTime.Now;
-            answerComments = new List<Comment>();
+            answerComments = new List<string>();
         }
         public Comment(string cm, RegularUser ru, Order orderr)
         {
@@ -556,7 +556,7 @@ namespace UserManagementSystem
         }
         public void DeleteComment()
         {
-            answerComments=new List<Comment>();
+            answerComments=new List<string>();
             fd.Comments.Remove(this);
         }
     }

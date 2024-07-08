@@ -33,7 +33,7 @@ public partial class OrderComments : Window
 
         // Bind the collection to the ListBox
         CommentsListBox.ItemsSource = Comments;
-        this.customer = customer;
+        //this.customer = customer;
     }
 
     // Event handler for the "Add Comment" button click

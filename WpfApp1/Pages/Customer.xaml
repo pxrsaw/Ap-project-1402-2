@@ -109,10 +109,12 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                            <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" />
-                            <GridViewColumn Header="Accept Type" DisplayMemberBinding="{Binding AcceptType}" />
-                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
-                            <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" />
+                            <GridViewColumn Header="City" DisplayMemberBinding="{Binding city}" />
+                            <!--<GridViewColumn Header="Accept Type" DisplayMemberBinding="{Binding AcceptType}" />-->
+                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding restaurantScore}" />
+                            <GridViewColumn Header="Address" DisplayMemberBinding="{Binding address}" />
+                            <GridViewColumn Header="Is Delivery" DisplayMemberBinding="{Binding isDelivery}" />
+                            <GridViewColumn Header="Is Dine in" DisplayMemberBinding="{Binding isDine_in}" />
                         </GridView>
                     </ListView.View>
                 </ListView>

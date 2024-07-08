@@ -192,14 +192,14 @@ namespace UserManagementSystem
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Load all restaurants initially
-            lvRestaurants.ItemsSource = Restaurant.AllRestaurants;
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    // Load all restaurants initially
+        //    lvRestaurants.ItemsSource = Restaurant.AllRestaurants;
 
-            // Populate city combobox
-            cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
-        }
+        //    // Populate city combobox
+        //    cbCity.ItemsSource = Restaurant.AllRestaurants.Select(r => r.city).Distinct();
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -356,6 +356,7 @@ namespace UserManagementSystem
         private void lvRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lvOrders.SelectedItem = regularUser.AllUserOrders;
+            //lvRestaurants.SelectedItem=Restaurant.AllRestaurants;
         }
     }
 }

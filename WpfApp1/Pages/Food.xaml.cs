@@ -54,6 +54,11 @@ namespace UserManagementSystem
                 MessageBox.Show("enter number");
                 return;
             }
+            if(numbb==0)
+            {
+                new RestaurantPage(rs4,ru12);
+                Close();
+            }
             if(numbb>food1.Inventory)
             {
                 MessageBox.Show("unavailable amount!");

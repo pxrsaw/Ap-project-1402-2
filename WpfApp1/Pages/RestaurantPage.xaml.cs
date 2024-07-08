@@ -118,7 +118,7 @@ namespace UserManagementSystem
                 stackpanel.Orientation = Orientation.Horizontal;
                 //item.
             }
-            string[] Foods = AllFoods.Select(r => r.Name).ToArray();
+            //string[] Foods = AllFoods.Select(r => r.Name).ToArray();
             ComplaintsListView.ItemsSource = AllFoods;
             ComplaintsListView3.ItemsSource = AllDrinks;
             ComplaintsListView4.ItemsSource = AllAppetizers;

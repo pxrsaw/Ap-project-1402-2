@@ -553,12 +553,12 @@ namespace UserManagementSystem
     }
     public class FeedBack
     {
-        public Restaurant restaurant;
-        public RegularUser Feedbackuser;
-        public string title;
-        public string description;
-        public bool isAnswered;
-        public string? answer;
+        public Restaurant restaurant { get; set; }
+        public RegularUser Feedbackuser { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public bool isAnswered { get; set; }
+        public string? answer { get; set; }
         public FeedBack(Restaurant restaurant,RegularUser regular, string title, string description)
         {
             this.restaurant = restaurant;
@@ -568,7 +568,7 @@ namespace UserManagementSystem
             answer=null;
             this.Feedbackuser = regular;
             regular.feedBacks.Add(this);
-            
+            adm.AllFeedBacks.Add(this);
             
         }
         public void answerFeedback(string feedback) 
@@ -581,6 +581,14 @@ namespace UserManagementSystem
     {
         public MainWindow()
         {
+            RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
+            new adm("parsa2", "parsa2", "", "");
+            var res1 = new Restaurant("", "res1", "res1", "", "", "tehran", false, false, "");
+            Food fd4 = new Food("hh", "jj", "drink", 6, 78);
+            FeedBack fb1 = new FeedBack(res1, ru1, "razi", "nmd");
+            Food[] fd5 = new Food[1];
+            fd5[0] = fd4;
+            res1.Menu.Add("drink", new List<Food>(fd5));
             InitializeComponent();
         }
 
@@ -595,15 +603,8 @@ namespace UserManagementSystem
             //var window = new Customer();
             //Close();
             //window.Show();
-            RegularUser ru1 = new RegularUser("","","parsa","parsa","em","09");
-            new adm("parsa2", "parsa2", "", "");
-            var res1=new Restaurant("", "res1", "res1", "", "", "tehran", false, false, "");
-            Food fd4 = new Food("hh", "jj", "drink", 6, 78);
-            FeedBack fb1 = new FeedBack(res1,ru1, "razi", "nmd");
             
-            Food[] fd5 = new Food[1];
-            fd5[0] = fd4;
-            res1.Menu.Add("drink", new List<Food>(fd5));
+            
             string UserName_ = UsernameTextBox.Text;
             string Password_ = PasswordTextBox.Text;
             var us1=user.Login(UserName_, Password_);
@@ -635,7 +636,7 @@ namespace UserManagementSystem
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            RegularUser ru1 = new RegularUser("", "", "parsa", "parsa", "em", "09");
+            
             var signwind = new signup();
             Close();
             signwind.Show();

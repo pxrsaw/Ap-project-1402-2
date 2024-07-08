@@ -20,10 +20,43 @@ namespace UserManagementSystem
     public partial class Food2 : Window
     {
         private Food food1;
-        public Food2(Food food)
+        private Restaurant rs4;
+        public Food2(Food food,Restaurant r1)
         {
-            food1 = food;
+           
             InitializeComponent();
+            food1 = food;
+            rs4 = r1;
+            nametxt.Text= $"Name: {food1.Name}";
+            mattxt.Text = $"Materials: {food1.Materials}";
+            typtxt.Text=$"Type: {food1.Type}";
+            scotxt.Text = $"Score: {food1.Score.ToString()}";
+            invtxt.Text = $"Avalability: {food1.Inventory.ToString()}";
+            prctxt.Text=$"Price: {food1.Price}";
+        }
+        public void subbutn(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("hyy");
+            int numbb=0;
+            try
+            {
+                numbb = int.Parse(numbox.Text);
+            }
+            catch 
+            {
+                MessageBox.Show("enter number");
+                return;
+            }
+            if(numbb>food1.Inventory)
+            {
+                MessageBox.Show("unavailable amount!");
+                return;
+            }
+            food1.Inventory -= numbb;
+            var rs = new RestaurantPage(rs4);
+            Close();
+
         }
     }
+    
 }

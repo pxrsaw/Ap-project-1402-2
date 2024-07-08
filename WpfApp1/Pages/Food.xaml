@@ -5,13 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserManagementSystem"
         mc:Ignorable="d"
+        Background="BlanchedAlmond"
         Title="Food" Height="450" Width="800">
-    <Grid Background="GhostWhite">
+        
+    <Grid Background="LightSalmon">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
+            
         </Grid.ColumnDefinitions>
-        <Border x:Name="Menu" Background="GhostWhite" Visibility="Visible" Margin="10" BorderThickness="2" BorderBrush="#FF333333">
+        <Border x:Name="Menu" Background="Gray" Visibility="Visible" Margin="10" BorderThickness="2" BorderBrush="#FF333333">
+            <StackPanel Margin="20" HorizontalAlignment="Center">
+                <TextBlock x:Name="nametxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="mattxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="typtxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="scotxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="invtxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="prctxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Number:"/>
+                    <TextBox x:Name="numbox" Width="100"></TextBox >
+                </StackPanel>
+
+                <Button Click="subbutn" Content="Submit" Width="50"/>
+            </StackPanel>
         </Border>
+        
     </Grid>
 </Window>

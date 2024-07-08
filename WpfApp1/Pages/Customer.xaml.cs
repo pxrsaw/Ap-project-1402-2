@@ -236,6 +236,7 @@ namespace UserManagementSystem
             UserManagementSystem.RestaurantPage restaurantPage = new UserManagementSystem.RestaurantPage(restaurant);
             //MessageBox.Show("hi");
             restaurantPage.Show();
+            RestaurantPage.OrderDic = new Dictionary<int, Food>();
         }
         private void Silver_Click(object sender, RoutedEventArgs e)
         {

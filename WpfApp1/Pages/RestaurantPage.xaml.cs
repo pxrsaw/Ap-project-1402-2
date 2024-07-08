@@ -26,9 +26,49 @@ namespace UserManagementSystem
         List<Food> AllDrinks = new List<Food>();
         List<Food> AllAppetizers = new List<Food>();
         List<Food> AllDesserts = new List<Food>();
+        public static Dictionary<int,Food> OrderDic= new Dictionary<int,Food>();
         public RestaurantPage(Restaurant restaurantt)
         {
             restaurant = restaurantt;
+            //MessageBox.Show(restaurant.Name);
+            InitializeComponent();
+
+            foreach (var fd1 in restaurant.Menu)
+            {
+                if (fd1.Type == "Food")
+                {
+                    AllFoods.Add(fd1);
+                }
+                if (fd1.Type == "Drink")
+                {
+                    AllDrinks.Add(fd1);
+                }
+                if (fd1.Type == "Appetizer")
+                {
+                    AllAppetizers.Add(fd1);
+                }
+                if (fd1.Type == "Dessert")
+                {
+                    AllDesserts.Add(fd1);
+                }
+            }
+            foreach (var item in restaurant.Menu)
+            {
+                var stackpanel = new StackPanel();
+                stackpanel.Orientation = Orientation.Horizontal;
+                //item.
+            }
+            string[] Foods = AllFoods.Select(r => r.Name).ToArray();
+            ComplaintsListView.ItemsSource = AllFoods;
+            ComplaintsListView3.ItemsSource = AllDrinks;
+            ComplaintsListView4.ItemsSource = AllAppetizers;
+            ComplaintsListView5.ItemsSource = AllDesserts;
+
+        }
+        public RestaurantPage(Restaurant restaurantt,int numbb,Food fdd)
+        {
+            restaurant = restaurantt;
+            OrderDic.Add(numbb, fdd);
             //MessageBox.Show(restaurant.Name);
             InitializeComponent();
             
@@ -89,9 +129,10 @@ namespace UserManagementSystem
             //int i4=AllDesserts.Count;
             Food selectedFood = AllFoods[ComplaintsListView.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood,restaurant);
 
             Selectedfood.Show();
+            Close();
         }
         private void ComplaintsListView3_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -100,9 +141,10 @@ namespace UserManagementSystem
             //MessageBox.Show("hi");
             Food selectedFood = AllDrinks[ComplaintsListView3.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
 
             Selectedfood.Show();
+            Close();
         }
         private void ComplaintsListView4_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -110,9 +152,10 @@ namespace UserManagementSystem
             //int i=AllFoods.Count;
             Food selectedFood = AllAppetizers[ComplaintsListView4.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
 
             Selectedfood.Show();
+            Close();
         }
         private void ComplaintsListView5_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -120,10 +163,12 @@ namespace UserManagementSystem
             //int i=AllFoods.Count;
             Food selectedFood = AllDesserts[ComplaintsListView5.SelectedIndex];
 
-            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood);
+            UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant);
 
             Selectedfood.Show();
+            Close();
         }
 
     }
+    
 }

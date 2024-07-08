@@ -102,6 +102,7 @@ namespace UserManagementSystem
         public Reserve ActiveReserve { get; set; }
         public List<FeedBack> feedBacks { get; set; }
         public DateTime? PremiumExpiration { get; set; }
+        public Dictionary<Food,float> ScoredFoods { get; set; }
         //public float Wallet;
         public RegularUser(string fn, string ln,string username, string password, string email, string phoneNumber) : base(username, password, email, phoneNumber)
         {
@@ -114,6 +115,7 @@ namespace UserManagementSystem
             AvailableReserves = 0;
             AllUserOrders = new List<Order>();
             feedBacks = new List<FeedBack>();
+            ScoredFoods= new Dictionary<Food,float>();
             //Wallet = 0;
             AllRegularUsers.Add(this);
             AllUsers.Add(this);
@@ -254,7 +256,7 @@ namespace UserManagementSystem
             AllScores=new List<float>();
             Wallet = 0;
         }
-        public void UpgradeScore(float f)
+        public void UpdateScore(float f)
         {
             AllScores.Add(f);
             float sum = 0;
@@ -479,6 +481,13 @@ namespace UserManagementSystem
         public int Inventory { get; set; }
         public float Price { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<float> Prices { get; set; }
+        public void UpdateScores(float f2)
+        {
+            Prices.Add(f2);
+            float sum = Prices.Sum(r => r);
+            Score = sum / Prices.Count;
+        }
         public Food(string name, string materials, string type, int inventory,float price)
         {
             Name = name;
@@ -488,6 +497,7 @@ namespace UserManagementSystem
             Comments = new List<Comment>();
             Inventory = inventory;
             Price = price;
+            Prices=new List<float>();
         }
         public void AddComment(string cm,RegularUser ru1,float user_score)
         {

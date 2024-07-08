@@ -127,7 +127,6 @@
                             <GridViewColumn Header="Restaurant" DisplayMemberBinding="{Binding res.Name}" />
                             <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Price}" />
                             <GridViewColumn Header="Payment" DisplayMemberBinding="{Binding IsCash}" />
-                            <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding comments[0].Text}" />
                             <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                         </GridView>
                     </ListView.View>

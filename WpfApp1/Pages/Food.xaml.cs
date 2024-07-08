@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UserManagementSystem
 {
@@ -24,8 +25,12 @@ namespace UserManagementSystem
         private RegularUser ru12;
         public Food2(Food food,Restaurant r1,RegularUser ru11)
         {
-           
             InitializeComponent();
+            qqa.Visibility = Visibility.Collapsed;
+            
+            qqa3.Visibility = Visibility.Collapsed;
+
+            
             ru12 = ru11;
             food1 = food;
             rs4 = r1;
@@ -59,6 +64,45 @@ namespace UserManagementSystem
             //RestaurantPage.OrderDic.Add(food1,numbb);
             Close();
 
+        }
+        public void rateBut(object sender, RoutedEventArgs e)
+        {
+            foreach(var item in ru12.ScoredFoods)
+            {
+                if(item.Key==food1)
+                {
+                    MessageBox.Show("you have already rated this food");
+                    return;
+                }
+            }
+            qqa.Visibility = Visibility.Visible;
+            
+            qqa3.Visibility = Visibility.Visible;
+
+        }
+        public void subRate(object sender, RoutedEventArgs e)
+        {
+            float f1;
+            try
+            {
+                f1 = float.Parse(rtBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("invalid number");
+                return;
+            }
+            if(f1<0||f1>5)
+            {
+                MessageBox.Show("invalid number");
+                return;
+            }
+            ru12.ScoredFoods.Add(food1, f1);
+            food1.UpdateScores(f1);
+            rs4.UpdateScore(f1);
+            new RestaurantPage(rs4,ru12);
+            Close();
+            MessageBox.Show("succesfully rated");
         }
     }
     

@@ -75,7 +75,21 @@ namespace UserManagementSystem
         {
             restaurant = restaurantt;
             ru10 = ru9;
-            OrderDic.Add(fdd,numbb);
+            int ch1 = 0;
+            foreach (var item in OrderDic)
+            {
+                if(item.Key==fdd)
+                {
+                    MessageBox.Show("already choosed this food");
+                    fdd.Inventory += numbb;
+                    ch1 = 1;
+                    break;
+                }
+            }
+            if(ch1 == 0)
+            {
+                OrderDic.Add(fdd, numbb);
+            }
             //MessageBox.Show(restaurant.Name);
             InitializeComponent();
             
@@ -135,7 +149,11 @@ namespace UserManagementSystem
             //int i3=AllAppetizers.Count;
             //int i4=AllDesserts.Count;
             Food selectedFood = AllFoods[ComplaintsListView.SelectedIndex];
-
+            if (selectedFood.Inventory == 0)
+            {
+                MessageBox.Show("item not available");
+                return;
+            }
             UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood,restaurant,ru10);
 
             Selectedfood.Show();
@@ -147,7 +165,11 @@ namespace UserManagementSystem
             //int i=AllFoods.Count;
             //MessageBox.Show("hi");
             Food selectedFood = AllDrinks[ComplaintsListView3.SelectedIndex];
-
+            if (selectedFood.Inventory == 0)
+            {
+                MessageBox.Show("item not available");
+                return;
+            }
             UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant,ru10);
 
             Selectedfood.Show();
@@ -158,7 +180,11 @@ namespace UserManagementSystem
             // Food selectedFood = (Food)ComplaintsListView.SelectedItem;
             //int i=AllFoods.Count;
             Food selectedFood = AllAppetizers[ComplaintsListView4.SelectedIndex];
-
+            if (selectedFood.Inventory == 0)
+            {
+                MessageBox.Show("item not available");
+                return;
+            }
             UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant, ru10);
 
             Selectedfood.Show();
@@ -173,7 +199,11 @@ namespace UserManagementSystem
             // Food selectedFood = (Food)ComplaintsListView.SelectedItem;
             //int i=AllFoods.Count;
             Food selectedFood = AllDesserts[ComplaintsListView5.SelectedIndex];
-
+            if(selectedFood.Inventory==0)
+            {
+                MessageBox.Show("item not available");
+                return;
+            }
             UserManagementSystem.Food2 Selectedfood = new UserManagementSystem.Food2(selectedFood, restaurant, ru10);
 
             Selectedfood.Show();

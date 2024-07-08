@@ -55,7 +55,8 @@ namespace UserManagementSystem
                 return;
             }
             food1.Inventory -= numbb;
-            var rs = new RestaurantPage(rs4,numbb,food1,ru12);
+            new RestaurantPage(rs4,numbb,food1,ru12);
+            //RestaurantPage.OrderDic.Add(food1,numbb);
             Close();
 
         }

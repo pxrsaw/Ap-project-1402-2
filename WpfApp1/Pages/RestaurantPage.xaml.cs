@@ -189,7 +189,7 @@ namespace UserManagementSystem
                 pricee += (v2.Value * (v2.Key.Price));
 
             }
-            OrderDic.Clear();
+            
             sOrder += $"Sum Price: {pricee}";
             MessageBox.Show(sOrder);
             if(isOnline)
@@ -215,6 +215,8 @@ namespace UserManagementSystem
                     MessageBox.Show("could not send email");
                 }
             }
+            ru10.orderFood(OrderDic, restaurant, !isOnline);
+            OrderDic.Clear();
             //var cst=new Customer()
 
         }

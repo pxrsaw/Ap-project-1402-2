@@ -31,7 +31,7 @@ namespace UserManagementSystem
             bool isValid=Regex.IsMatch(name,pattern);
             return isValid;
         }
-        public bool CheckEmail(string email)
+        public static bool CheckEmail(string email)
         {
 
             string pattern2 = @"^[^@\s]{3,32}@[^\s@]{3,32}\.[a-zA-Z]{2,3}";
@@ -109,7 +109,7 @@ namespace UserManagementSystem
                 smtp.Credentials = new NetworkCredential("restaurant.managementpx@gmail.com", "jrgf purp tskt zzwg");
                 smtp.Send(mail);
                 MessageBox.Show("email sent");
-                var sust = new signupsubmit(username_, name_, lastname_, email_, phonenumber_, rn.ToString());
+                var sust = new signupsubmit(username_, name_, lastname_, email_, phonenumber_, rn.ToString(),GenderBox.Text,PostalBox.Text);
                 sust.Show();
                 Close();
             }

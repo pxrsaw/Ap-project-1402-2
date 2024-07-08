@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System.Buffers;
+using System.Net.Mail;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,6 +16,13 @@ namespace UserManagementSystem
         {
             this.regularUser = regularUser;
             InitializeComponent();
+            nametxt.Text = $"First Name: {regularUser.firstName}";
+            mattxt.Text=$"Last Name: {regularUser.lastName}";
+            typtxt.Text=$"User Name: {regularUser.username}";
+            scotxt.Text=$"phone number: {regularUser.phoneNumber}";
+            invtxt.Text=$"email: {regularUser.email}";
+            prctxt.Text=$"gender: {regularUser.gender}";
+            prc2txt.Text=$"postal code: {regularUser.postalCode}";
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
@@ -21,6 +30,21 @@ namespace UserManagementSystem
             string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
             ComboRes.ItemsSource = Names;
             Profile.Visibility = Visibility.Visible;
+            nametxt.Visibility = Visibility.Visible;
+            mattxt.Visibility = Visibility.Visible;
+            typtxt.Visibility = Visibility.Visible;
+            scotxt.Visibility = Visibility.Visible;
+            invtxt.Visibility = Visibility.Visible;
+            prctxt.Visibility = Visibility.Visible;
+            prc2txt.Visibility = Visibility.Visible;
+            EditDataButton.Visibility = Visibility.Visible;
+            ResLab.Visibility = Visibility.Visible;
+            ComboRes.Visibility = Visibility.Visible;
+            //uuj.Visibility = Visibility.Visible;
+            Gold.Visibility = Visibility.Visible;
+            Silver.Visibility = Visibility.Visible;
+            Bronze.Visibility = Visibility.Visible;
+            EditDataGrid.Visibility = Visibility.Collapsed;
             Search.Visibility = Visibility.Collapsed;
             Order.Visibility = Visibility.Collapsed;
             Feedbacks.Visibility = Visibility.Collapsed;
@@ -52,11 +76,46 @@ namespace UserManagementSystem
             Order.Visibility = Visibility.Collapsed;
             Feedbacks.Visibility = Visibility.Visible;
         }
-        private void ShowDataButton_Click(object sender, RoutedEventArgs e)
-        { // Bind the ListView to the user information
-            ProfileListView.ItemsSource = new List<object> { new { Email = regularUser.email, PostalCode = regularUser.postalCode,
-                PhoneNumber = regularUser.phoneNumber } };
+        //private void ShowDataButton_Click(object sender, RoutedEventArgs e)
+        //{ // Bind the ListView to the user information
+        //    ProfileListView.ItemsSource = new List<object> { new { Email = regularUser.email, PostalCode = regularUser.postalCode,
+        //        PhoneNumber = regularUser.phoneNumber } };
+        //}
+        private void SendCode_Click(object sender, RoutedEventArgs e)
+        {
+            if(!signup.CheckEmail(Email.Text))
+            {
+                MessageBox.Show("invalid email!");
+                return;
+            }
+            string eml=Email.Text;
+            string npo=Postal.Text;
+            ooi.Visibility = Visibility.Visible;
+            AcCode.Visibility = Visibility.Visible;
+            SaveButton.Visibility = Visibility.Visible;
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("restaurant.managementpx@gmail.com");
+            mail.To.Add(eml);
+            mail.Subject = "verification code";
+            Random r = new Random();
+            int rn = r.Next(10000, 100000);
+            mail.Body = rn.ToString();
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.UseDefaultCredentials = false;
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("restaurant.managementpx@gmail.com", "jrgf purp tskt zzwg");
+            smtp.Send(mail);
+            MessageBox.Show("email sent");
+            newEmail = eml;
+            newPostal = npo;
+            newCode=rn.ToString();
+
         }
+        public string newEmail;
+        public string newPostal;
+        public string newCode;
         private void EditDataButton_Click(object sender, RoutedEventArgs e) 
         { 
             ComboRes.Visibility = Visibility.Collapsed;
@@ -66,24 +125,71 @@ namespace UserManagementSystem
             Silver.Visibility = Visibility.Collapsed;
             Bronze.Visibility = Visibility.Collapsed;
             Laabel.Visibility = Visibility.Collapsed;
-            ProfileListView.Visibility = Visibility.Collapsed;
+            //ProfileListView.Visibility = Visibility.Collapsed;
+            nametxt.Visibility = Visibility.Collapsed;
+            mattxt.Visibility = Visibility.Collapsed;
+            typtxt.Visibility = Visibility.Collapsed;
+            scotxt.Visibility = Visibility.Collapsed;
+            invtxt.Visibility = Visibility.Collapsed;
+            prctxt.Visibility = Visibility.Collapsed;
             EditDataButton.Visibility = Visibility.Collapsed;
             EditDataGrid.Visibility = Visibility.Visible;
+            ooi.Visibility = Visibility.Collapsed;
+            AcCode.Visibility = Visibility.Collapsed;
+            SaveButton.Visibility = Visibility.Collapsed;
+          
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e) 
         { 
-            regularUser.email = Email.Text; regularUser.postalCode = Postal.Text; 
-            EditDataGrid.Visibility = Visibility.Collapsed;
-            ComboRes.Visibility = Visibility.Visible;
-            ResLab.Visibility = Visibility.Visible;
-            LabSer.Visibility = Visibility.Visible;
-            Gold.Visibility = Visibility.Visible;
-            Silver.Visibility = Visibility.Visible;
-            Bronze.Visibility = Visibility.Visible;
-            Laabel.Visibility = Visibility.Visible;
-            ProfileListView.Visibility = Visibility.Visible;
+            //regularUser.email = Email.Text; 
+            //regularUser.postalCode = Postal.Text;
+            Profile.Visibility = Visibility.Visible;
+            nametxt.Visibility = Visibility.Visible;
+            mattxt.Visibility = Visibility.Visible;
+            typtxt.Visibility = Visibility.Visible;
+            scotxt.Visibility = Visibility.Visible;
+            invtxt.Visibility = Visibility.Visible;
+            prctxt.Visibility = Visibility.Visible;
+            prc2txt.Visibility = Visibility.Visible;
+            Gold.Visibility= Visibility.Visible;
+            Silver.Visibility= Visibility.Visible;
+            Bronze.Visibility= Visibility.Visible;
             EditDataButton.Visibility = Visibility.Visible;
+            ResLab.Visibility = Visibility.Visible;
+            ComboRes.Visibility = Visibility.Visible;
+            uuj.Visibility = Visibility.Visible;
             EditDataGrid.Visibility = Visibility.Collapsed;
+            Search.Visibility = Visibility.Collapsed;
+            Order.Visibility = Visibility.Collapsed;
+            Feedbacks.Visibility = Visibility.Collapsed;
+            if(newCode!=AcCode.Text)
+            {
+                MessageBox.Show("code doesn't match");
+                return;
+            }
+            regularUser.email = newEmail;
+            regularUser.postalCode = newPostal;
+            MessageBox.Show("changes saved successfully");
+            //Profile.Visibility = Visibility.Collapsed;
+            //nametxt.Visibility = Visibility.Collapsed;
+            //mattxt.Visibility = Visibility.Collapsed;
+            //typtxt.Visibility = Visibility.Collapsed;
+            //scotxt.Visibility = Visibility.Collapsed;
+            //invtxt.Visibility = Visibility.Collapsed;
+            //prctxt.Visibility = Visibility.Collapsed;
+            //prc2txt.Visibility = Visibility.Collapsed;
+            //Gold.Visibility = Visibility.Collapsed;
+            //Silver.Visibility = Visibility.Collapsed;
+            //Bronze.Visibility = Visibility.Collapsed;
+            //EditDataButton.Visibility = Visibility.Collapsed;
+            //ResLab.Visibility = Visibility.Collapsed;
+            //ComboRes.Visibility = Visibility.Collapsed;
+            //uuj.Visibility = Visibility.Collapsed;
+            
+            var aa=new Customer(regularUser);
+            aa.Show();
+            Close();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

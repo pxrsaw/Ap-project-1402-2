@@ -5,9 +5,11 @@
         Background="#FFE5E5E5">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="Auto" MinHeight="56.6"/>
+            <RowDefinition Height="Auto" MinHeight="56.6"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" MinHeight="56.6"/>
-            <RowDefinition Height="Auto" MinHeight="56.6"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -31,6 +33,10 @@
         <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="10,10,10,10" FontSize="20"/>
         <Label FontSize="20" Grid.Row="5" Grid.Column="0" Content="Phone number:" Margin="10,10,10,10"/>
         <TextBox x:Name="PhoneBox" Grid.Row="5" Grid.Column="1" Margin="10,10,10,10" FontSize="20"/>
-        <Button Grid.Row="6" Grid.Column="1" Content="Sign Up" Margin="227,27,0,140" Click="Button_Click_11" HorizontalAlignment="Left" Width="100" FontSize="15"/>
+        <Label FontSize="20" Grid.Row="6" Grid.Column="0" Content="Gender:" Margin="10,10,10,10"/>
+        <TextBox x:Name="GenderBox" Grid.Row="6" Grid.Column="1" Margin="10,10,10,10" FontSize="20"/>
+        <Label FontSize="20" Grid.Row="7" Grid.Column="0" Content="Postal Code" Margin="10,10,10,10"/>
+        <TextBox x:Name="PostalBox" Grid.Row="7" Grid.Column="1" Margin="10,10,10,10" FontSize="20"/>
+        <Button Grid.Row="8" Grid.Column="1" Content="Sign Up" Margin="227,27,0,140" Click="Button_Click_11" HorizontalAlignment="Left" Width="100" FontSize="15" RenderTransformOrigin="0.527,0.056"/>
     </Grid>
 </Window>

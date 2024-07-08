@@ -25,9 +25,11 @@ namespace UserManagementSystem
         public string lastName;
         public string email;
         public string phoneNumber;
-        string ActiveCode;
+        public string ActiveCode;
+        public string? gnd2;
+        public string? pcd2;
 
-        public signupsubmit(string usn,string nm,string ln,string em,string pn,string avcode)
+        public signupsubmit(string usn,string nm,string ln,string em,string pn,string avcode,string? gnd,string? pcd)
         {
             InitializeComponent();
             userName = usn;
@@ -36,6 +38,9 @@ namespace UserManagementSystem
             email = em;
             phoneNumber = pn;
             ActiveCode= avcode;
+            gnd2 = gnd;
+            pcd2 = pcd;
+
         }
         public bool CheckPassword(string password)
         {
@@ -55,6 +60,8 @@ namespace UserManagementSystem
                 return;
             }
             RegularUser ru7 = new RegularUser(Namee, lastName, userName, Password_TextBox.Text, email, phoneNumber);
+            ru7.gender = gnd2;
+            ru7.postalCode = pcd2;
             MessageBox.Show("signed up successfully");
             var window = new Customer(ru7);
             Close();

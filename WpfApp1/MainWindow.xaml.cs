@@ -207,7 +207,7 @@ namespace UserManagementSystem
             }
             return rs;
         }
-        public void orderFood(List<Food> ordf, Restaurant r2,bool ic)
+        public void orderFood(Dictionary<Food, int> ordf, Restaurant r2,bool ic)
         {
             Order o1 = new Order(this, r2, ordf,ic);
             r2.orders.Add(o1);
@@ -334,13 +334,13 @@ namespace UserManagementSystem
     {
         public RegularUser rus { get; set; }
         public Restaurant res { get; set; }
-        public List<Food> orderFoods { get; set; }
+        public Dictionary<Food,int> orderFoods { get; set; }
         public float Price { get; set; }
         public float? Score { get; set; }
         public DateTime orderDate { get; set; }
         public List<Comment> comments { get; set; }
         public bool IsCash { get; set; }
-        public Order(RegularUser rus, Restaurant res, List<Food> orderFoods, bool isCash)
+        public Order(RegularUser rus, Restaurant res, Dictionary<Food,int> orderFoods, bool isCash)
         {
             this.rus = rus;
             this.res = res;
@@ -349,9 +349,9 @@ namespace UserManagementSystem
             orderDate = DateTime.Now;
             IsCash = isCash;
             Price = 0;
-            foreach(Food food in orderFoods)
+            foreach(var row in orderFoods)
             {
-                Price += food.Price;
+                Price += ((row.Key.Price)*(row.Value));
             }
             res.Wallet += Price;
             //rus.Wallet-=Price;

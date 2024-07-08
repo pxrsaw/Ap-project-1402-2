@@ -22,7 +22,7 @@
         <Border BorderBrush="#FF333333" Name="Profile" BorderThickness="2" Grid.Column="1" Visibility="Visible"  Margin="10">
             <StackPanel HorizontalAlignment="Stretch">
                 <Label Name="Laabel" FontSize="30" Margin="0,10,0,0" FontWeight="Heavy" HorizontalAlignment="Center" FontFamily="Times New Roman">Profile</Label>
-                <ListView x:Name="ProfileListView" Height="200">
+                <!--<ListView x:Name="ProfileListView" Height="200">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -31,8 +31,14 @@
                             <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}" />
                         </GridView>
                     </ListView.View>
-                </ListView>
-                
+                </ListView>-->
+                <TextBlock x:Name="nametxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="mattxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="typtxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="scotxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="invtxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="prctxt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
+                <TextBlock x:Name="prc2txt" FontSize="13" FontWeight="Heavy" Margin="0,0,0,20" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
                     <Button Name="EditDataButton" Content="Edit Information" Margin="0,0,10,0" Width="100" Height="30" Click="EditDataButton_Click" />
                 </StackPanel>
@@ -42,6 +48,9 @@
                         <TextBox x:Name="Postal" Margin="10" FontSize="20"/>
                         <Label FontSize="20" Margin="0,10,0,0" HorizontalAlignment="Center" FontFamily="Times New Roman">New Email:</Label>
                         <TextBox x:Name="Email" Margin="10" FontSize="20"/>
+                        <Button Name="SendCode" Content="Send Code" Margin="0,20,0,0" Width="100" Height="30" Click="SendCode_Click" />
+                        <Label Name="ooi" FontSize="20" Margin="0,10,0,0" HorizontalAlignment="Center" FontFamily="Times New Roman">enter code:</Label>
+                        <TextBox x:Name="AcCode" Margin="10" FontSize="20"/>
                         <Button Name="SaveButton" Content="Save" Margin="0,20,0,0" Width="100" Height="30" Click="SaveButton_Click" />
                     </StackPanel>
                 </Border>
@@ -54,7 +63,7 @@
                     <Label Name="ResLab" FontSize="10" Grid.Column="0" HorizontalAlignment="Right">Restaurant Name:</Label>
                     <ComboBox Name="ComboRes" Width="100" Height="20" Grid.Column="1" HorizontalAlignment="Left"/>
                 </Grid>
-                <Grid>
+                <Grid x:Name="uuj">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

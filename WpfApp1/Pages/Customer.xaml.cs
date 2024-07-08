@@ -18,6 +18,8 @@ namespace UserManagementSystem
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
+            string[] Names = Restaurant.AllRestaurants.Select(r => r.Name).ToArray();
+            ComboRes.ItemsSource = Names;
             Profile.Visibility = Visibility.Visible;
             Search.Visibility = Visibility.Collapsed;
             Order.Visibility = Visibility.Collapsed;
@@ -49,22 +51,40 @@ namespace UserManagementSystem
             Order.Visibility = Visibility.Collapsed;
             Feedbacks.Visibility = Visibility.Visible;
         }
-
         private void ShowDataButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Bind the DataGrid to the information list
-            //InformationDataGrid.ItemsSource = (System.Collections.IEnumerable)regularUser;
-            //Make the DataGrid visible
-            //InformationDataGrid.Visibility = Visibility.Visible;
-
+        { // Bind the ListView to the user information
+            ProfileListView.ItemsSource = new List<object> { new { Email = regularUser.email, PostalCode = regularUser.postalCode,
+                PhoneNumber = regularUser.phoneNumber } };
         }
-
-        private void EditDataButton_Click(object sender, RoutedEventArgs e)
-        {
+        private void EditDataButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            ComboRes.Visibility = Visibility.Collapsed;
+            ResLab.Visibility = Visibility.Collapsed;
+            LabSer.Visibility = Visibility.Collapsed;
+            Gold.Visibility = Visibility.Collapsed;
+            Silver.Visibility = Visibility.Collapsed;
+            Bronze.Visibility = Visibility.Collapsed;
+            Laabel.Visibility = Visibility.Collapsed;
+            ProfileListView.Visibility = Visibility.Collapsed;
+            EditDataButton.Visibility = Visibility.Collapsed;
             EditDataGrid.Visibility = Visibility.Visible;
-            regularUser.email = Email.Text;
-            regularUser.postalCode = Postal.Text;
         }
+        private void SaveButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            regularUser.email = Email.Text; regularUser.postalCode = Postal.Text; 
+            EditDataGrid.Visibility = Visibility.Collapsed;
+            ComboRes.Visibility = Visibility.Visible;
+            ResLab.Visibility = Visibility.Visible;
+            LabSer.Visibility = Visibility.Visible;
+            Gold.Visibility = Visibility.Visible;
+            Silver.Visibility = Visibility.Visible;
+            Bronze.Visibility = Visibility.Visible;
+            Laabel.Visibility = Visibility.Visible;
+            ProfileListView.Visibility = Visibility.Visible;
+            EditDataButton.Visibility = Visibility.Visible;
+            EditDataGrid.Visibility = Visibility.Collapsed;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Load all restaurants initially
@@ -147,6 +167,21 @@ namespace UserManagementSystem
         private void lvOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lvOrders.SelectedItem = regularUser.AllUserOrders;
+        }
+
+        private void Gold_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Silver_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bronze_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

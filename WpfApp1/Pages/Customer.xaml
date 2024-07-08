@@ -22,21 +22,51 @@
 
         <Border BorderBrush="#FF333333" Name="Profile" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
             <StackPanel HorizontalAlignment="Stretch">
-                <Label FontSize="30" Margin="0,10,0,0" FontWeight="Heavy" HorizontalAlignment="Center" FontFamily="Times New Roman">Profile</Label>
-                <Button Name="ShowDataButton" Content="Information" Margin="0,20,0,0" Click="ShowDataButton_Click" Width="100"/>
-                <Button Name="EditDataButton" Content="Edit Information" Margin="0,20,0,50" Click="EditDataButton_Click" Width="100"/>
-                <DataGrid Name="InformationDataGrid" Margin="0,20,0,0" Visibility="Collapsed"/>
+                <Label Name="Laabel" FontSize="30" Margin="0,10,0,0" FontWeight="Heavy" HorizontalAlignment="Center" FontFamily="Times New Roman">Profile</Label>
+                <ListView x:Name="ProfileListView" Height="200">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                            <GridViewColumn Header="Postal Code" DisplayMemberBinding="{Binding PostalCode}" />
+                            <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding PhoneNumber}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button Name="EditDataButton" Content="Edit Information" Margin="0,0,10,0" Width="100" Height="30" Click="EditDataButton_Click" />
+                </StackPanel>
                 <Border Name="EditDataGrid" Margin="0,20,0,0" Visibility="Collapsed">
                     <StackPanel>
                         <Label FontSize="20" Margin="0,10,0,0" HorizontalAlignment="Center" FontFamily="Times New Roman">New Postal Code:</Label>
                         <TextBox x:Name="Postal" Margin="10" FontSize="20"/>
                         <Label FontSize="20" Margin="0,10,0,0" HorizontalAlignment="Center" FontFamily="Times New Roman">New Email:</Label>
                         <TextBox x:Name="Email" Margin="10" FontSize="20"/>
+                        <Button Name="SaveButton" Content="Save" Margin="0,20,0,0" Width="100" Height="30" Click="SaveButton_Click" />
                     </StackPanel>
                 </Border>
+                <Label HorizontalAlignment="Left" FontSize="10" Name="LabSer">Update Services:</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Name="ResLab" FontSize="10" Grid.Column="0" HorizontalAlignment="Right">Restaurant Name:</Label>
+                    <ComboBox Name="ComboRes" Width="100" Height="20" Grid.Column="1" HorizontalAlignment="Left"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Width="100" Height="20" Grid.Column="0" Content="Gold" Background="DarkGoldenrod" Name="Gold" Click="Gold_Click"/>
+                    <Button Grid.Column="1" Height="20" Width="100" Content="Silver" Background="Silver" Name="Silver" Click="Silver_Click" Margin="0,0,10,0"/>
+                    <Button Grid.Column="2" Height="20" Width="100" Content="Bronze" Background="SaddleBrown" Name="Bronze" Click="Bronze_Click"/>
+                </Grid>
             </StackPanel>
         </Border>
-        <Border BorderBrush="#FF333333" Name="Search" BorderThickness="2" Grid.Column="1" Visibility="Collapsed"  Margin="10">
+        <Border BorderBrush="#FF333333" Name="Search" BorderThickness="2" Grid.Column="1" Visibility="Visible"  Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -58,7 +88,7 @@
                     <Button Content="Search" Click="Button_Click" />
                 </StackPanel>
 
-                <ListView x:Name="lvRestaurants" Grid.Column="1" Margin="10">
+                <ListView x:Name="lvRestaurants" Grid.Column="1" Margin="10" SelectionChanged="lvRestaurants_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
